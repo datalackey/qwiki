@@ -1,0 +1,25 @@
+services:
+  mediawiki:
+    image: mediawiki
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./images:/var/www/html/images
+      - ./LocalSettings.php:/var/www/html/LocalSettings.php
+    depends_on:
+      - database
+
+  database:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: replace-me
+      MYSQL_DATABASE: mediawiki
+      MYSQL_USER: mediawiki
+      MYSQL_PASSWORD: replace-me
+    volumes:
+      - mediawiki-db:/var/lib/mysql
+
+volumes:
+  mediawiki-db:
