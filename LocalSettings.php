@@ -151,3 +151,7 @@ wfLoadExtension( 'TitleBlacklist' );
 # End of automatically generated settings.
 # Add more configuration options below.
 
+wfLoadExtension( 'CategoryTree' );
+$wgCategoryTreeSidebarRoot = 'Domains';
+
+$wgShowExceptionDetails = true; 
