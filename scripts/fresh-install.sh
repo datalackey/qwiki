@@ -32,6 +32,9 @@ rm -rf LocalSettings.php   # docker may have created a dir here if the file was 
 git checkout LocalSettings.php
 docker compose up -d
 
+echo "==> Running schema update for extensions (AbuseFilter etc.)..."
+docker compose exec -T mediawiki php maintenance/run.php update --quick
+
 echo ""
 echo "Fresh wiki ready at http://localhost:8080"
 echo "Log in as Admin / $ADMIN_PASS"
