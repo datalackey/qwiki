@@ -57,6 +57,9 @@ api_edit "Category:Domains" "Top-level navigation root."
 api_edit "Category:Animals" "Sample subcategory.
 
 [[Category:Domains]]"
+api_edit "Category:Mammals" "Sample leaf category.
+
+[[Category:Animals]]"
 
 echo "==> Bouncing containers..."
 bash "$(dirname "$0")/../scripts/bounce.sh"
