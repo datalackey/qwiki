@@ -1,0 +1,21 @@
+{
+  "name": "doikayt-converter",
+  "version": "1.0.0",
+  "description": "Converts Markdown with YAML front matter to MediaWiki via API",
+  "bin": {
+    "md2wiki": "./src/cli.ts"
+  },
+  "scripts": {
+    "md2wiki": "npx tsx src/cli.ts"
+  },
+  "type": "module",
+  "license": "ISC",
+  "dependencies": {
+    "gray-matter": "4.0.3",
+    "pandoc-wasm": "1.1.0"
+  },
+  "devDependencies": {
+    "tsx": "4.23.0",
+    "typescript": "7.0.2"
+  }
+}
