@@ -13,7 +13,9 @@
     "lint": "eslint src",
     "format": "prettier --write src",
     "test": "vitest run",
-    "test:e2e": "tsx tests/e2e/e2e.ts"
+    "test:e2e": "tsx tests/e2e/e2e.ts",
+    "update-markdown-docs": "autogen-markdown-doc update README.md",
+    "check-markdown-docs": "autogen-markdown-doc check README.md"
   },
   "type": "module",
   "license": "MIT",
@@ -22,6 +24,7 @@
     "pandoc-wasm": "1.1.0"
   },
   "devDependencies": {
+    "@datalackey/autogen-markdown-doc": "^1.4.11",
     "@datalackey/typescript-build-config": "^0.0.13",
     "tsx": "4.23.0",
     "typescript": "~5.4.0",
