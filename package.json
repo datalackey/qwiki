@@ -1,21 +1,29 @@
 {
-  "name": "doikayt-converter",
-  "version": "1.0.0",
-  "description": "Converts Markdown with YAML front matter to MediaWiki via API",
+  "name": "qwiki",
+  "version": "0.1.0",
+  "description": "Bootstrap a MediaWiki from local Markdown files",
   "bin": {
-    "md2wiki": "./src/cli.ts"
+    "qwiki": "./src/cli.ts"
+  },
+  "engines": {
+    "node": ">=18"
   },
   "scripts": {
-    "md2wiki": "npx tsx src/cli.ts"
+    "qwiki": "npx tsx src/cli.ts",
+    "lint": "eslint src",
+    "format": "prettier --write src",
+    "test": "vitest run"
   },
   "type": "module",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "gray-matter": "4.0.3",
     "pandoc-wasm": "1.1.0"
   },
   "devDependencies": {
+    "@datalackey/typescript-build-config": "^0.0.13",
     "tsx": "4.23.0",
-    "typescript": "7.0.2"
+    "typescript": "~5.4.0",
+    "vitest": "^4.1.10"
   }
 }

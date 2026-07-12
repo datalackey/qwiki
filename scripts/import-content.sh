@@ -2,7 +2,7 @@
 set -e
 
 WIKI_URL="http://localhost:8080"
-CONTENT_DIR="${1:-spike-content}"
+CONTENT_DIR="${1:-example-content}"
 
 echo "==> Checking wiki is up..."
 if ! curl -sf --max-time 5 "$WIKI_URL" > /dev/null; then

@@ -1,0 +1,18 @@
+.idea/
+
+**/node_modules/
+**/dist/
+*.tsbuildinfo
+
+coverage/
+.nx/
+.env
+
+# MediaWiki XML exports (generated artifact, not source)
+*.xml
+
+# Scratch / backup files
+*.bak
+*.old
+*.png
+

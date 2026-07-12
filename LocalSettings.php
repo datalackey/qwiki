@@ -21,8 +21,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## Uncomment this to disable output compression
 # $wgDisableOutputCompression = true;
 
-$wgSitename = "doikayt";
-$wgMetaNamespace = "Doikayt";
+$wgSitename = "My Wiki";       # CHANGE: your wiki's display name
+$wgMetaNamespace = "MyWiki";  # CHANGE: no spaces, used in page titles
 
 ## The URL base path to the directory containing the wiki;
 ## defaults for all runtime URL paths are based off of this.
@@ -49,8 +49,8 @@ $wgLogos = [
 $wgEnableEmail = true;
 $wgEnableUserEmail = true; # UPO
 
-$wgEmergencyContact = "chris@buildlackey.com";
-$wgPasswordSender = "chris@buildlackey.com";
+$wgEmergencyContact = "admin@example.com";  # CHANGE: your email
+$wgPasswordSender = "admin@example.com";    # CHANGE: your email
 
 $wgEnotifUserTalk = true; # UPO
 $wgEnotifWatchlist = false; # UPO
@@ -103,6 +103,7 @@ $wgLocaltimezone = "UTC";
 ## be publicly accessible from the web.
 #$wgCacheDirectory = "$IP/cache";
 
+# SECURITY: regenerate this key for any non-local deployment (fresh-install.sh does this automatically)
 $wgSecretKey = "8c9ddfd94f4c8cf0a230ca3b57ff29a99e7232e43a1f8cafb9fe24b146f29dae";
 
 # Changing this will log out all existing sessions.
@@ -152,6 +153,6 @@ wfLoadExtension( 'TitleBlacklist' );
 # Add more configuration options below.
 
 wfLoadExtension( 'CategoryTree' );
-$wgCategoryTreeSidebarRoot = 'Domains';
+$wgCategoryTreeSidebarRoot = 'Domains'; # CHANGE: root category key for sidebar tree (must match your top-level Category:X)
 
-$wgShowExceptionDetails = true; 
+$wgShowExceptionDetails = true; # Disable in production
