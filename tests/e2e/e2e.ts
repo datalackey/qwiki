@@ -3,7 +3,7 @@
  *
  * Exercises the full bootstrap cycle using the infra/ scripts, then checks
  * that the rendered wiki sidebar contains the links defined in
- * example-content/system/sidebar.md.
+ * example/wiki-content-files/system/sidebar.md.
  *
  * Requires docker on the host. Destructive: wipes the local wiki DB volume.
  *
@@ -15,9 +15,9 @@ import { fileURLToPath } from 'node:url';
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const WIKI_URL = 'http://localhost:8080';
-const CONTENT_DIR = resolve(repoRoot, 'example-content');
+const CONTENT_DIR = resolve(repoRoot, 'example/wiki-content-files');
 
-// Page titles linked from example-content/system/sidebar.md, in URL form.
+// Page titles linked from example/wiki-content-files/system/sidebar.md, in URL form.
 // The rendered sidebar HTML must contain a link to each.
 const EXPECTED_SIDEBAR_LINKS = [
   'Evaluation_Criteria',

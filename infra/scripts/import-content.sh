@@ -5,7 +5,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(dirname "$(dirname "$SCRIPT_DIR")")"
 
 WIKI_URL="http://localhost:8080"
-CONTENT_DIR="${1:-$REPO_ROOT/example-content}"
+CONTENT_DIR="${1:-$REPO_ROOT/example/wiki-content-files}"
 
 echo "==> Checking wiki is up..."
 if ! curl -sf --max-time 5 "$WIKI_URL" > /dev/null; then

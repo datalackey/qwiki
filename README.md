@@ -43,7 +43,7 @@ Default admin credentials: `Admin` / `AdminPass123`
 bash infra/scripts/import-content.sh
 ```
 
-This converts `example-content/` and pushes all pages to the wiki via the
+This converts `example/wiki-content-files/` and pushes all pages to the wiki via the
 MediaWiki API. Open `http://localhost:8080` and hard-refresh to see the result.
 
 ### 3. Use qwiki directly
@@ -60,7 +60,7 @@ never as a flag.
 ## Content directory layout
 
 ```
-example-content/
+example/wiki-content-files/
   categories/          # Category namespace pages (Category:X)
   templates/           # Template namespace pages (Template:X)
   system/              # System pages (MediaWiki:Common.css etc.)
@@ -137,7 +137,7 @@ provides a self-contained local wiki for content development and testing.
 | Script | What it does |
 |---|---|
 | `infra/scripts/fresh-install.sh` | Full reset: tear down containers, wipe DB volume, reinstall |
-| `infra/scripts/import-content.sh` | Deploy `example-content/` to the running wiki |
+| `infra/scripts/import-content.sh` | Deploy `example/wiki-content-files/` to the running wiki |
 | `infra/scripts/bounce.sh` | Restart containers (flushes APCu/ResourceLoader cache) |
 | `infra/scripts/wipe.sh` | Tear down containers and volumes without reinstalling |
 
@@ -160,8 +160,8 @@ npm run test:e2e
 ```
 
 Runs the full bootstrap cycle against the local docker environment: fresh
-install, `example-content/` import, then verifies the rendered sidebar
-contains the links defined in `example-content/system/sidebar.md`.
+install, `example/wiki-content-files/` import, then verifies the rendered sidebar
+contains the links defined in `example/wiki-content-files/system/sidebar.md`.
 Destructive — wipes the local wiki DB volume. Requires docker.
 
 ---
