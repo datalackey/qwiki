@@ -1,4 +1,4 @@
-import type { Page } from "./convert.ts";
+import type { Page } from "./convert.js";
 
 export interface DeployOptions {
     wiki: string;

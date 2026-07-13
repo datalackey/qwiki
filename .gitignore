@@ -2,11 +2,12 @@
 
 **/node_modules/
 **/dist/
-*.tsbuildinfo
+*.tsbuildinfo 
 
 coverage/
 .nx/
 .env
+
 
 # MediaWiki XML exports (generated artifact, not source)
 *.xml

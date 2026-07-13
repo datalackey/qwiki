@@ -38,7 +38,8 @@ export async function convertDir(dir: string): Promise<Page[]> {
         const { data, content } = matter(raw);
 
         const title = data["title"] as string | undefined;
-        if (!title) throw new Error(`Missing required "title" field in: ${filePath}`);
+        if (title === undefined || title === "")
+            throw new Error(`Missing required "title" field in: ${filePath}`);
 
         const categories: string[] = Array.isArray(data["categories"])
             ? (data["categories"] as unknown[]).filter((c): c is string => typeof c === "string")
