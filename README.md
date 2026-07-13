@@ -12,7 +12,9 @@
   - [Local Docker environment](#local-docker-environment)
     - [Configuration](#configuration)
   - [Development](#development)
+    - [Setup](#setup)
     - [Unit tests](#unit-tests)
+    - [Linting](#linting)
     - [End-to-end test](#end-to-end-test)
     - [Before committing](#before-committing)
     - [Full CI check](#full-ci-check)
@@ -77,7 +79,7 @@ MediaWiki API. Open `http://localhost:8080` and hard-refresh to see the result.
 ### 3. Use qwiki directly
 
 ```bash
-MW_PASSWORD=AdminPass123 npx tsx src/cli.ts ./my-content \
+MW_PASSWORD=AdminPass123 npx tsx code/src/cli.ts ./my-content \
                         --wiki http://localhost:8080 --user Admin
 ```
 
@@ -186,6 +188,8 @@ you run `fresh-install.sh`.
 
 ## Development
 
+### Setup
+
 ```bash
 git clone git@github.com:doikayt/qwiki.git
 cd qwiki
@@ -198,9 +202,17 @@ npm install
 npm test
 ```
 
-Runs the vitest suite in `tests/`, covering the Markdown → MediaWiki conversion
+Runs the vitest suite in `code/tests/`, covering the Markdown → MediaWiki conversion
 logic (frontmatter handling, pandoc conversion, categories, redirects, content
 models). No docker required.
+
+### Linting
+
+```bash
+npm run lint
+```
+
+Runs ESLint over `code/src/`. No docker required.
 
 ### End-to-end test
 
@@ -220,7 +232,7 @@ Destructive — wipes the local wiki DB volume. Requires docker.
 npm run update-all-format
 ```
 
-Runs Prettier over `src/` then regenerates the README TOC. Run this before
+Runs Prettier over `code/src/` then regenerates the README TOC. Run this before
 staging a commit whenever you have edited source files or changed section headings.
 
 ### Full CI check
