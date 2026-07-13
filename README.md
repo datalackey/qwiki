@@ -24,7 +24,6 @@
 <!-- TOC:END -->
 
 
-
 # qwiki
 
 Bootstraps a MediaWiki from local Markdown files.
