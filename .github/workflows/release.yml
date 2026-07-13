@@ -19,7 +19,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm test --if-present
+      - run: npm run ci
       - name: Check Changesets (PR only)
         if: github.event_name == 'pull_request'
         run: npx changeset status
