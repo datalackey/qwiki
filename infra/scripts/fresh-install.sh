@@ -6,6 +6,9 @@ REPO_ROOT="$(dirname "$INFRA_DIR")"
 COMPOSE="docker compose -f $INFRA_DIR/docker-compose.yml"
 
 ADMIN_PASS="${1:-AdminPass123}"
+
+echo "==> Ensuring extensions are cloned..."
+bash "$INFRA_DIR/scripts/ensure-extensions.sh"
 # Matches the "name: qwiki" project name pinned in docker-compose.yml
 VOLUME="qwiki_mediawiki-db"
 

@@ -20,3 +20,6 @@ coverage/
 
 # MediaWiki images bind mount (created by docker at runtime)
 infra/images/
+
+# MediaWiki extensions — cloned at setup time by ensure-extensions.sh, not committed
+infra/extensions/
