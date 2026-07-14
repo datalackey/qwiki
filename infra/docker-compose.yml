@@ -4,7 +4,7 @@ name: qwiki
 
 services:
   mediawiki:
-    image: mediawiki
+    image: mediawiki:1.46
     restart: always
     ports:
       - "8080:80"
