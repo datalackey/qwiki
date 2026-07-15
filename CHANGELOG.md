@@ -1,5 +1,15 @@
 # @datalackey/qwiki
 
+## 0.1.5
+
+### Patch Changes
+
+-   - feat: add category-tree "Add new entry" form with contextual pre-fill
+    - fix: correct Vector legacy sidebar CSS to stop header overflow
+    - feat: add ensure-extensions.sh to pin PageForms/Cargo to the MediaWiki version
+    - feat: wire PageForms and Cargo extensions into MediaWiki
+    - fix: pin mediawiki image to 1.46 in docker-compose.yml
+
 ## 0.1.4
 
 ### Patch Changes
