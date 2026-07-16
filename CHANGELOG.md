@@ -1,5 +1,11 @@
 # @datalackey/qwiki
 
+## 0.1.9
+
+### Patch Changes
+
+-   - feat(content): restructure categories and add Slack, DigitalOcean tool entries
+
 ## 0.1.8
 
 ### Patch Changes
