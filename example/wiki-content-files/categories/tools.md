@@ -1,7 +1,7 @@
 ---
 title: "Category:Tools"
 categories:
-  - Internal Operations
+  - Operations
 redirect_from: []
 raw: true
 ---

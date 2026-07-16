@@ -5,8 +5,7 @@ categories:
 redirect_from: []
 ---
 
-## Site Organization 
-
+# Site Organization 
 
 Content is organized as a shallow hierarchy, moving from broad generalized domains
 of organizational concern to operational areas within a domain  (and potentially,
@@ -24,15 +23,22 @@ an intervening sub-area)  --  all the way down to the level of individual tools 
 In Wiki-speak each of these levels is simply a 
 [_page_ _category_](https://en.wikipedia.org/wiki/Wikipedia:Contents/Categories).
 The left-hand navigation panel mirrors this category hierarchy. Top-level entries — such as
-_Internal Operations_ or _Outbound Communications_ — link to domain-level    
-Wiki category pages and are maintained by our site administrators. 
+_Operations_ or _Communications_ — link to domain-level Wiki category pages
+and are maintained by our site administrators.
 
-Below the _domain_ level (i.e., below the _top level_), categories can be 
-added by any site user as needed
-(but note site admins might roll your proposed category into an existing one
-or rename it.)  Users add categories by placing [[Category:CategoryName]] near the bottom
-of their page's text content.  Note that the New Submission form 
-does this automatically: just select your _Category_ from the tree select control.
+Below the _domain_ level (i.e., below the _top level_), categories can be
+added by any site user as needed (but note site admins might roll your
+proposed category into an existing one or rename it.)
+
+To assign a page to a category, place the following tag near the bottom of
+the page's wikitext, replacing `CategoryName` with the exact category name
+(spaces allowed; case-sensitive):
+
+ <nowiki>[[Category:CategoryName]]</nowiki>
+
+A page can belong to more than one category — add one tag per line. The
+New Submission form handles this automatically via the _Category_ tree
+selector.
 
 
 ### Guidelines for New Category Additions
@@ -59,4 +65,3 @@ create a page 'Rejected Alternatives' at the level of the immediate parent Task
 of the page that is now joined by its new sibling pages. 
 
 
-example/wiki-content-files/site-organization.mexample/wiki-content-files/site-organization.mdd
