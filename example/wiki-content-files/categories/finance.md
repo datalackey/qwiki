@@ -1,7 +1,7 @@
 ---
 title: "Category:Finance&Accounting"
 categories:
-  - Internal Operations
+  - Operations
 redirect_from: []
 ---
 

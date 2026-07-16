@@ -1,9 +1,9 @@
 ---
-title: "Category:Internal Communications"
+title: "Category:Internal Comms"
 categories:
-  - Internal Operations
+  - Communications
 redirect_from: []
 ---
-# Internal Communications
+# Internal Comms
 
 Concerns related to communication and coordination within the organization.

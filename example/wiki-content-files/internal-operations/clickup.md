@@ -6,7 +6,8 @@ raw: true
 ---
 {{Tool
 |company=ClickUp
-|url=https://clickup.com/
+|protocol=https
+|url=clickup.com
 |pricing=recurring/mo
 |amount=$7/user/month (free tier available)
 |source_license=closed

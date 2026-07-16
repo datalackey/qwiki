@@ -1,7 +1,7 @@
 ---
 title: "Category:Calendars"
 categories:
-  - Outbound Communications
+  - Internal Comms
 redirect_from: []
 ---
 

@@ -1,10 +1,10 @@
 ---
-title: "Category:Internal Operations"
+title: "Category:Operations"
 categories:
   - Domains
 redirect_from: []
 ---
-# Internal Operations
+# Operations
 
 Operational concerns related to the internal functioning of a grassroots
 organization.
