@@ -21,8 +21,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## Uncomment this to disable output compression
 # $wgDisableOutputCompression = true;
 
-$wgSitename = "My Wiki";       # CHANGE: your wiki's display name
-$wgMetaNamespace = "MyWiki";  # CHANGE: no spaces, used in page titles
+$wgSitename = "Doikayt Field Guide";
+$wgMetaNamespace = "DoikaytFieldGuide";
 
 ## The URL base path to the directory containing the wiki;
 ## defaults for all runtime URL paths are based off of this.
@@ -40,8 +40,8 @@ $wgResourceBasePath = $wgScriptPath;
 ## The URL paths to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
 $wgLogos = [
-	'1x' => "$wgResourceBasePath/resources/assets/change-your-logo.svg",
-	'icon' => "$wgResourceBasePath/resources/assets/change-your-logo.svg",
+	'1x' => "/images/logo.png",
+	'icon' => "/images/logo.png",
 ];
 
 ## UPO means: this is also a user preference option

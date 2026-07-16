@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { basename } from "node:path";
 import type { Page } from "./convert.js";
 
 /** Produced by cli.ts from parsed CLI args; consumed by deploy(). */
@@ -68,12 +70,39 @@ async function apiPost(
 }
 
 /**
+ * Upload a single file to the wiki via `action=upload` (multipart/form-data).
+ * `ignorewarnings=1` suppresses duplicate/exists warnings so re-runs are idempotent.
+ */
+async function uploadFile(wiki: string, jar: CookieJar, csrf: string, filePath: string): Promise<void> {
+    const filename = basename(filePath);
+    const form = new FormData();
+    form.append("action", "upload");
+    form.append("filename", filename);
+    form.append("token", csrf);
+    form.append("ignorewarnings", "1");
+    form.append("format", "json");
+    form.append("file", new Blob([readFileSync(filePath)]), filename);
+
+    const res = await fetch(`${wiki}/api.php`, {
+        method: "POST",
+        headers: { Cookie: jar.header() },
+        body: form,
+    });
+    jar.absorb(res);
+    const data = (await res.json()) as Record<string, unknown>;
+    const upload = data["upload"] as Record<string, string> | undefined;
+    const err = data["error"] as Record<string, string> | undefined;
+    const result = upload?.["result"] ?? err?.["code"] ?? "unknown";
+    process.stdout.write(`  [upload] ${filename}: ${result}\n`);
+}
+
+/**
  * Authenticate against the MediaWiki Action API and write every page via
  * `action=edit` - the same call a human edit through the wiki UI produces.
  * Sequence: fetch a login token, clientlogin, fetch a CSRF token, then one
  * edit POST per page (idempotent - re-running overwrites with current content).
  */
-export async function deploy(pages: Page[], opts: DeployOptions): Promise<void> {
+export async function deploy(pages: Page[], opts: DeployOptions, files: string[] = []): Promise<void> {
     const { wiki, user, password } = opts;
     const jar = new CookieJar();
 
@@ -105,6 +134,11 @@ export async function deploy(pages: Page[], opts: DeployOptions): Promise<void> 
     const csrf = (csrfRes["query"] as Record<string, Record<string, string>>)["tokens"][
         "csrftoken"
     ];
+
+    // Upload files
+    for (const filePath of files) {
+        await uploadFile(wiki, jar, csrf, filePath);
+    }
 
     // Edit pages
     for (const page of pages) {

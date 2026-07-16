@@ -1,0 +1,4 @@
+{
+	"formstart": "New Submission Wizard",
+	"pf_formstart_docu": "Enter the name of the product or service you are suggesting here (it will be edited with the form \"$1\".)\nIf a page for this entry already exists, you will be sent to the form for editing that page.\nOtherwise, you will be sent to the form that allows you to select the appropriate category, and other details for your new entry."
+}

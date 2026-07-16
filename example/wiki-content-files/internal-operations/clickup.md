@@ -1,24 +1,20 @@
 ---
 title: "ClickUp"
 categories:
-  - Project Management
 redirect_from: []
+raw: true
 ---
-# ClickUp
-
-[ClickUp](https://clickup.com/) is a cloud-based project and task
-management platform.
-
-## Evaluation
-
-| Criterion | Notes |
-|---|---|
-| Cost | Free tier available; paid plans from $7/user/month |
-| Risk: Vendor stability | Commercial SaaS; no self-hosting option |
-| Risk: Deplatforming | Account termination possible; data exportable |
-| Mission alignment | No known conflicts |
-| Accessibility | Web and mobile; low technical barrier |
-
-## Discussion
-
-[[Talk:ClickUp]]
+{{Tool
+|company=ClickUp
+|url=https://clickup.com/
+|pricing=recurring/mo
+|amount=$7/user/month (free tier available)
+|source_license=closed
+|hosting=cloud
+|description=Cloud-based project and task management platform for assigning tasks,
+tracking progress, and coordinating team workflows.
+|usage_notes=Use Board view for kanban-style tracking across teams.
+Guest access is available on paid plans for external collaborators.
+|rejected_alternatives=
+|category=Project Management
+}}

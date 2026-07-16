@@ -110,6 +110,7 @@ MediaWiki API. Open `http://localhost:8080` and hard-refresh to see the result.
 
 ```
 example/wiki-content-files/
+  files/               # Image and media assets (uploaded to the File: namespace)
   categories/          # Category namespace pages (Category:X)
   templates/           # Template namespace pages (Template:X)
   system/              # System pages (MediaWiki:Common.css etc.)
@@ -139,6 +140,49 @@ Page content here in Markdown.
 | `categories` | string[] | no | Each entry becomes `[[Category:X]]` appended to the page body |
 | `redirect_from` | string[] | no | Each entry creates a `#REDIRECT [[title]]` page |
 | `raw` | boolean | no | Skip pandoc; send body verbatim (CSS, wikitext templates, system pages) |
+
+### File uploads
+
+Any file placed directly inside `files/` is uploaded to the wiki's `File:`
+namespace via `action=upload` as part of the same deploy run. Uploads happen
+before page edits so images are available when page content is written.
+
+```
+files/
+  logo.png        → File:logo.png on the wiki
+  banner.svg      → File:banner.svg on the wiki
+```
+
+Re-running qwiki is safe — uploads use `ignorewarnings=1` so existing files are
+overwritten without error.
+
+To reference an uploaded file in a page:
+
+```wikitext
+[[File:logo.png|thumb|Caption here]]
+```
+
+#### Site logo auto-wiring
+
+Name the file exactly `logo.png`. After uploading it, qwiki queries the
+canonical file URL from the API and patches the `$wgLogos` block in
+`infra/LocalSettings.php` automatically:
+
+```php
+$wgLogos = [
+    '1x' => "http://localhost:8080/w/images/.../logo.png",
+    'icon' => "http://localhost:8080/w/images/.../logo.png",
+];
+```
+
+Then restart MediaWiki to apply the change:
+
+```bash
+bash infra/scripts/bounce.sh
+```
+
+If `infra/LocalSettings.php` is not found relative to the working directory,
+qwiki prints the URL so you can paste it in manually.
 
 ### Namespace detection
 
@@ -220,9 +264,14 @@ npm install
 npm test
 ```
 
-Runs the vitest suite in `code/tests/`, covering the Markdown → MediaWiki conversion
-logic (frontmatter handling, pandoc conversion, categories, redirects, content
-models). No docker required.
+Runs the vitest suite in `code/tests/`, covering:
+
+- Markdown → MediaWiki conversion (frontmatter, pandoc, categories, redirects,
+  content models, raw pass-through)
+- MediaWiki API deploy sequence (login token, clientlogin, CSRF token, per-page
+  edit POSTing, cookie threading, non-wikitext content models)
+
+No docker required.
 
 ### Linting
 

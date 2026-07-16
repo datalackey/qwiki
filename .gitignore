@@ -17,6 +17,9 @@ coverage/
 *.old
 *.png
 
+# Source image assets committed intentionally
+!example/**/files/*.png
+
 
 # MediaWiki images bind mount (created by docker at runtime)
 infra/images/

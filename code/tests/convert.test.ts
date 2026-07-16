@@ -2,8 +2,15 @@ import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import { convertDir } from "../src/convert.js";
+import { collectFiles, convertDir } from "../src/convert.js";
 import type { Page } from "../src/convert.js";
+
+// Minimal valid 1×1 red-pixel PNG (69 bytes), generated and verified offline.
+const TINY_PNG = Buffer.from(
+    "89504e470d0a1a0a0000000d4948445200000001000000010802000000907753de" +
+        "0000000c49444154789c63f8cfc0000003010100c9fe92ef0000000049454e44ae426082",
+    "hex"
+);
 
 const tempDirs: string[] = [];
 
@@ -27,6 +34,35 @@ function byTitle(pages: Page[], title: string): Page {
     if (page === undefined) throw new Error(`No page titled: ${title}`);
     return page;
 }
+
+describe("collectFiles", () => {
+    it("returns empty array when no files/ subdirectory exists", () => {
+        const dir = fixtureDir({ "page.md": '---\ntitle: "X"\nraw: true\n---\nx\n' });
+        expect(collectFiles(dir)).toEqual([]);
+    });
+
+    it("returns paths of files inside files/ using real image bytes", () => {
+        const dir = fixtureDir({
+            "files/logo.png": TINY_PNG.toString("binary"),
+            "files/icon.png": TINY_PNG.toString("binary"),
+        });
+        // Write as binary (fixtureDir uses writeFileSync with string; re-write as Buffer)
+        writeFileSync(join(dir, "files/logo.png"), TINY_PNG);
+        writeFileSync(join(dir, "files/icon.png"), TINY_PNG);
+        const files = collectFiles(dir);
+        expect(files).toHaveLength(2);
+        expect(files.map(f => f.split("/").at(-1)).sort()).toEqual(["icon.png", "logo.png"]);
+    });
+
+    it("skips subdirectories inside files/", () => {
+        const dir = fixtureDir({});
+        mkdirSync(join(dir, "files/subdir"), { recursive: true });
+        writeFileSync(join(dir, "files/logo.png"), TINY_PNG);
+        const files = collectFiles(dir);
+        expect(files).toHaveLength(1);
+        expect(files[0]).toContain("logo.png");
+    });
+});
 
 describe("convertDir", () => {
     it("passes raw pages through without pandoc, trimming leading whitespace", async () => {
@@ -98,5 +134,38 @@ describe("convertDir", () => {
     it("throws when no markdown files exist", async () => {
         const dir = fixtureDir({ "readme.txt": "nothing here" });
         await expect(convertDir(dir)).rejects.toThrow(/No \.md files found/);
+    });
+
+    it("throws when title is an empty string", async () => {
+        const dir = fixtureDir({ "page.md": '---\ntitle: ""\nraw: true\n---\nx\n' });
+        await expect(convertDir(dir)).rejects.toThrow(/Missing required "title"/);
+    });
+
+    it("does not append category tags for raw pages", async () => {
+        const dir = fixtureDir({
+            "styles.md": '---\ntitle: "Common.css"\nraw: true\ncategories: [Styles]\n---\nbody { color: red; }\n',
+        });
+        const pages = await convertDir(dir);
+        const page = byTitle(pages, "Common.css");
+        expect(page.body).not.toContain("[[Category:");
+        expect(page.body).toBe("body { color: red; }\n");
+    });
+
+    it("emits no redirect pages when redirect_from is empty", async () => {
+        const dir = fixtureDir({
+            "page.md": '---\ntitle: "Home"\nredirect_from: []\n---\nHello.\n',
+        });
+        const pages = await convertDir(dir);
+        expect(pages).toHaveLength(1);
+    });
+
+    it("filters non-string entries out of categories", async () => {
+        const dir = fixtureDir({
+            "page.md": '---\ntitle: "Home"\ncategories:\n  - Docs\n  - 42\n---\nHello.\n',
+        });
+        const pages = await convertDir(dir);
+        const page = byTitle(pages, "Home");
+        expect(page.body).toContain("[[Category:Docs]]");
+        expect(page.body).not.toContain("[[Category:42]]");
     });
 });

@@ -6,64 +6,85 @@ redirect_from: []
 ---
 # Digital Mobilization Field Guide
 
-A field guide for information technology professionals supporting grassroots
-campaigns and organizations.
+A technical field guide to digital products, and services 
+that support the operations of organizations aligned with the 
+pro-labor, pro-human rights, pro-free speech and anti-imperialist 
+agenda of Doikat Mobilization Labs. [TBD: need link]
+
 
 ## Target Audience
 
-If you are an IT professional in a movement-aligned organization, then 
-you face a unique set of challenges. Just like your colleagues in 
-corporate, government and military settings, you need to identify 
-evaluate, configure and administer  software and hardware products, 
-services and platforms  that reliably serve your organization's mission.
+### Profile
 
-In addition, you are subject to a unique set of constraints:
+IT staff and volunteers at such organization who are tasked with the:
 
-**Cost** — Tools must typically be free or very low cost. Organizational
-budgets are limited and often grant-funded; recurring SaaS fees that are
-routine in corporate contexts are frequently not viable.
+- identification,
+- evaluation,
+- configuration,
+- customization and
+- ongoing maintenance and support of software and hardware that supports their organizational missions.
 
-**Deplatforming risk** — [Deplatforming][deplatform] is the removal of a
-person or organization from a platform by the operator, typically without
-recourse. For movement organizations, this risk extends from lawfare to outright
-government-ordered bans on tools or services. Preference is given to tools
-that can be self-hosted, or whose operators cannot unilaterally terminate
-access.
+### Proficiency Assumptions 
 
-**Mission alignment** — Many grassroots organizations carry an explicit or
-implicit imperative not to support companies whose business practices conflict
-with movement values. Relevant examples include:
-- Vendors that license AI systems for weapons targeting or military strike
-  applications
-- Platforms whose revenue model depends on behavioral surveillance or
-  engagement-maximizing algorithms with documented harms to users
+Baseline technical skills. At minimum, you should be a 'power user', comfortable with:
 
+- config files
+- command line directives
+- IT operations basics
+    - Web, Internet, and cloud concepts
+    - basic security
 
-## Role of AI 
+### Your Unique Challenges
 
-Many of us are rightfully concerned that -- given its current stewards -- 
-AI adoption entails environmental destruction,  massive job loss,
-auto-selection of bombing targets that happen to be girl's schools,  
-and intrusive corporate and state surveillance.
+Recommendations here will prioritize products/services that meet 
+constraints your colleagues in corporate, government and military settings don't have to deal with:
 
-Our position:  AI can also be a tool that benefits ordinary working people --
-just like fire, it can burn your enemies, or it can heat your family's house in the winter.
+- shoe-string budgets,
+- deplatforming risks, and
+- ethical considerations
 
-In our work -- developing tools and content (such as this Wiki)
-geared toward automating the work of grass roots organizations  -- make substantial use 
-of AI.  We hope to include information on this Wiki that helps our 
-community select resource efficient AI models which not only 
-run locally (and use less energy), but are also free of the training bias of 
-many commerical platforms that has AI agents echo back received establishment 
-wisdom on many topics.
+See our [New Submissions](/wiki/New_Submissions) for further discussion of how
+these factor into our structured protocol for recommending new products and services.
 
 
+## Site Organization 
+
+Content is organized as a shallow hierarchy, moving from broad generalized domains
+of organizational concern to operational areas within a domain  -- with, potentially,
+an intervening sub-area  -- all the way down to the level of individual tools (one per page).
+
+**Domain** → 
+    **Operational Area** → 
+        **Operational Sub-area** → 
+            **Task** → 
+                **Candidate Tool**
+
+See our [New Submissions](/wiki/New_Submissions) for details on how to select a category and adding new categories.
 
 
 ## How To Contribute
 
 - Request an account from chris@datalackey.com
-- TODO:  need to provide guidelines, or a link to a guidelines page
+- `[[Project:Add New Tool|Click here]]`{=mediawiki} to submit a new tool, or click 'Add new tool' in the sidebar from anywhere on the site
+
+
+## Long Term Vision 
+
+### Wiki -> Database
+
+We have formalized the procedure for adding new content to this site so that each entry 
+for a recommended tool has a known structure (schema). We plan to leverage this known 
+structure when we start feeding a database with this site's content.  
+
+### Database -> Tool for AI Agent 
+
+Longer term we plan to expose our content as a tool that be consumed by AI language models via
+[Model Context Protocol](https://en.wikipedia.org/wiki/Model_Context_Protocol).
+The goal is to enable conversations along the lines of:  "I am looking for a low (or no)
+cost tool to streamline the process of submitting my organization's weekly events to 
+various community calendars."
+
+
 
 [deplatform]: https://www.merriam-webster.com/dictionary/deplatform
 

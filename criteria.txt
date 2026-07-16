@@ -1,0 +1,23 @@
+
+
+Cost — Tools must typically be free or very low cost. Organizational budgets are limited and often grant-funded; recurring SaaS fees that are routine in corporate contexts are frequently not viable.
+
+Deplatforming risk — Deplatforming is the removal of a person or organization from a platform by the operator, typically without recourse. For movement organizations, this risk extends from lawfare to outright government-ordered bans on tools or services. Preference is given to tools that can be self-hosted, or whose operators cannot unilaterally terminate access.
+
+Mission alignment — Many grassroots organizations carry an explicit or implicit imperative not to support companies whose business
+
+
+
+
+pricing                amt      license         platform    hosting 
+    free                        open/closed                 self|cloud|N/A
+    recurring/mo
+    recurring/yr
+    one time
+    varies
+
+
+name                                            company             url
+ [product or service name (not company)]        [who provides]
+
+description

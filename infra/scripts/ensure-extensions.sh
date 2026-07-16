@@ -38,7 +38,7 @@ for entry in "${EXTENSIONS[@]}"; do
       echo "       Fix: rm -rf \"$DIR\" && bash \"$(dirname "$0")/ensure-extensions.sh\"" >&2
       exit 1
     fi
-    echo "    $NAME already on $BRANCH — skipping"
+    echo "    $NAME already on $BRANCH — skipping clone"
   else
     echo "==> Checking remote for $NAME @ $BRANCH..."
     if ! git ls-remote --heads "$URL" "$BRANCH" | grep -q "$BRANCH"; then
@@ -51,5 +51,8 @@ for entry in "${EXTENSIONS[@]}"; do
     git clone --branch "$BRANCH" --depth 1 "$URL" "$DIR"
   fi
 done
+
+echo "==> Applying local patches..."
+node "$(dirname "$0")/apply-patches.js" "$EXTENSIONS_DIR" "$INFRA_DIR/patches"
 
 echo "==> Extensions ready."

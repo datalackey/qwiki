@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import matter from "gray-matter";
 import { convert } from "pandoc-wasm";
@@ -28,6 +28,19 @@ function findMarkdownFiles(dir: string): string[] {
         else if (entry.name.endsWith(".md")) results.push(fullPath);
     }
     return results;
+}
+
+/**
+ * Return paths of every file directly inside `<contentDir>/files/`.
+ * Returns an empty array if the subdirectory does not exist.
+ * Directories within `files/` are skipped.
+ */
+export function collectFiles(contentDir: string): string[] {
+    const filesDir = join(contentDir, "files");
+    if (!existsSync(filesDir)) return [];
+    return readdirSync(filesDir, { withFileTypes: true })
+        .filter(e => !e.isDirectory())
+        .map(e => join(filesDir, e.name));
 }
 
 /**

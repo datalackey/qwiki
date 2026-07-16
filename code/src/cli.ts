@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { resolve } from "node:path";
-import { convertDir } from "./convert.js";
+import { collectFiles, convertDir } from "./convert.js";
 import { deploy } from "./deploy.js";
 
 /** Print usage and exit non-zero. */
@@ -40,10 +40,12 @@ async function main(): Promise<void> {
 
     console.log(`==> Converting: ${contentDir}`);
     const pages = await convertDir(contentDir);
+    const files = collectFiles(contentDir);
     console.log(`    ${pages.length} page(s) converted`);
+    if (files.length > 0) console.log(`    ${files.length} file(s) to upload`);
 
     console.log(`==> Deploying to: ${wiki}`);
-    await deploy(pages, { wiki, user, password });
+    await deploy(pages, { wiki, user, password }, files);
 
     console.log("\nDone.");
 }
