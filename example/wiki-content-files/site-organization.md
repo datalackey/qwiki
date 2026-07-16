@@ -37,16 +37,16 @@ does this automatically: just select your _Category_ from the tree select contro
 
 ### Guidelines for New Category Additions
 
-### Short Names
+#### Short Names
 
 Keep the name under three words (ideally two, as the side panel nav tree 
 might start word wrapping or exhibiting other rendering issues.)
 
-### Check for Dups
+#### Check for Dups
 
 Verify there is no similar category before you add a new one.
 
-### Task Level Category Rules
+#### Task Level Category Rules
 
 Each _Task_ should be a short phrase indicating a concrete action undertaken by 
 technicians in service of either special projects, or ongoing operations. 
@@ -59,4 +59,4 @@ create a page 'Rejected Alternatives' at the level of the immediate parent Task
 of the page that is now joined by its new sibling pages. 
 
 
-
+example/wiki-content-files/site-organization.mexample/wiki-content-files/site-organization.mdd
