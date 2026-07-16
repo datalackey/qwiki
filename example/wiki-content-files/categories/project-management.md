@@ -1,7 +1,7 @@
 ---
 title: "Category:Project Management"
 categories:
-  - Internal Communications
+  - Internal Operations
 redirect_from: []
 ---
 # Project Management
