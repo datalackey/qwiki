@@ -1,5 +1,12 @@
 # @datalackey/qwiki
 
+## 0.1.8
+
+### Patch Changes
+
+-   - fix(content): remove animal example content and clarify import behaviour
+    - fix(content): correct Project Management category parent and remove redundant page
+
 ## 0.1.7
 
 ### Patch Changes
