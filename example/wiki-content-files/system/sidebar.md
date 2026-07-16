@@ -11,7 +11,7 @@ raw: true
 ** Habitats|Habitats
 ** Care and Husbandry|Care and husbandry
 ** Why Animals|Our namesake
-** Project:Add New Tool|Add new tool
+** Project:New Submission|New Submission
 * SEARCH
 * TOOLBOX
 * LANGUAGES

@@ -13,6 +13,8 @@
       - [Site logo auto-wiring](#site-logo-auto-wiring)
     - [Namespace detection](#namespace-detection)
     - [Templates](#templates)
+    - [Category pages](#category-pages)
+    - [Links](#links)
   - [Local Docker environment](#local-docker-environment)
     - [Configuration](#configuration)
   - [Development](#development)
@@ -222,6 +224,46 @@ raw: true
 ```
 
 Use them on any page with `{{EvaluationCriteria|cost_notes=Low|risk_notes=Medium}}`.
+
+### Category pages
+
+A category page uses the `Category:` namespace prefix in its title:
+
+```markdown
+---
+title: "Category:Internal Operations"
+categories:
+  - Domains
+redirect_from: []
+---
+
+Brief description of this domain.
+```
+
+Any page that lists this category in its `categories:` frontmatter will
+automatically appear under it on the wiki. No new tests are needed when adding
+a category page — the test suite checks specific named pages, not all
+categories.
+
+### Links
+
+**External links** — standard Markdown syntax, converted by pandoc:
+
+```markdown
+[Link text](https://example.com)
+```
+
+**Intra-wiki links** — use MediaWiki wikilink syntax via pandoc's raw
+passthrough:
+
+```markdown
+`[[Page Title]]`{=mediawiki}
+`[[Page Title|Custom display text]]`{=mediawiki}
+```
+
+Do not use `/wiki/Page_Name` URL-style links for internal pages. That format
+depends on the wiki's article path configuration and will break on installs
+where the path differs.
 
 ---
 

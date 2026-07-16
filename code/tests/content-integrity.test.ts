@@ -7,19 +7,19 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const CONTENT_DIR = resolve(__dirname, "../../example/wiki-content-files");
 
 describe("content integrity", () => {
-    it('sidebar "Add new tool" entry links to Project:Add New Tool', () => {
+    it('sidebar "New Submission" entry links to Project:New Submission', () => {
         const sidebar = readFileSync(resolve(CONTENT_DIR, "system/sidebar.md"), "utf8");
-        expect(sidebar).toContain("Project:Add New Tool|Add new tool");
+        expect(sidebar).toContain("Project:New Submission|New Submission");
     });
 
-    it("Project:Add New Tool page exists with correct title", () => {
+    it("Project:New Submission page exists with correct title", () => {
         const page = readFileSync(resolve(CONTENT_DIR, "project/add-new-tool.md"), "utf8");
-        expect(page).toContain('title: "Project:Add New Tool"');
+        expect(page).toContain('title: "Project:New Submission"');
     });
 
-    it('main page "Click here" link targets Project:Add New Tool', () => {
+    it('main page "Click here" link targets Project:New Submission', () => {
         const page = readFileSync(resolve(CONTENT_DIR, "main-page.md"), "utf8");
-        expect(page).toContain("[[Project:Add New Tool|Click here]]");
+        expect(page).toContain("[[Project:New Submission|Click here]]");
     });
 
     it("amount regexp allows empty string — regression: blank amount showed banner with no field highlight", () => {

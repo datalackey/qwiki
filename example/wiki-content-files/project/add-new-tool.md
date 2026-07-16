@@ -1,5 +1,5 @@
 ---
-title: "Project:Add New Tool"
+title: "Project:New Submission"
 categories:
 redirect_from: []
 raw: true
