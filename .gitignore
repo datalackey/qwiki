@@ -15,7 +15,6 @@ coverage/
 # Scratch / backup files
 *.bak
 *.old
-*.png
 
 # Source image assets committed intentionally
 !example/**/files/*.png
