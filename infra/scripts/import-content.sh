@@ -26,6 +26,10 @@ fi
 echo "==> Deploying content..."
 (cd "$REPO_ROOT" && npx tsx code/src/cli.ts "$CONTENT_DIR" --wiki "$WIKI_URL" --user Admin)
 
+echo "==> Running pending jobs (category counters, search index, etc.)..."
+(cd "$REPO_ROOT/infra" && docker compose exec -T mediawiki \
+  php maintenance/runJobs.php --quiet)
+
 echo "==> Initializing Cargo tables..."
 (cd "$REPO_ROOT/infra" && docker compose exec -T mediawiki \
   php extensions/Cargo/maintenance/cargoRecreateData.php --table tool --quiet)
