@@ -5,6 +5,18 @@ redirect_from: []
 raw: true
 ---
 
+/* Point the site logo at the Doikayt Mobilization Labs homepage, opening
+   in a new tab so the wiki stays open in the background. */
+( function () {
+	'use strict';
+
+	$( '#p-logo a' ).attr( {
+		href: 'https://www.doikayt.org',
+		target: '_blank',
+		rel: 'noopener'
+	} );
+}() );
+
 /* Replace PageForms OOUI tooltip buttons with a plain <sup>?</sup> trigger
    that shows the help text in a lightweight floating div on click. */
 ( function () {

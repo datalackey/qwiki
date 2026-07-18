@@ -1,7 +1,7 @@
 ---
 title: "Slack"
 categories:
-  - Team Messaging
+  - Team Collaboration
 redirect_from: []
 raw: true
 ---
@@ -19,5 +19,5 @@ integrations at 10.
 |usage_notes=Guest access available on paid plans for external collaborators.
 Slack Connect allows cross-organization channels with other Slack workspaces.
 |rejected_alternatives=
-|category=Team Messaging
+|category=Team Collaboration
 }}
