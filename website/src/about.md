@@ -32,4 +32,6 @@ environmental, and anti-imperialist movements instead of tools that serve extrac
 and control is making a quiet, durable case that Jewish values and human decency are
 not in tension.
 
-See our [Projects](/projects.html) page for the tools we build and maintain.
+See our [Projects](/projects.html) page for the tools we build and maintain.....
+
+------

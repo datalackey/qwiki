@@ -1,12 +1,10 @@
 <!-- TOC:START -->
 - [qwiki](#qwiki)
   - [Prerequisites](#prerequisites)
-  - [How To Use](#how-to-use)
-    - [Install](#install)
-    - [Run](#run)
   - [Local Development Quickstart](#local-development-quickstart)
-    - [1. Start a fresh local wiki](#1-start-a-fresh-local-wiki)
-    - [2. Deploy content](#2-deploy-content)
+    - [1. Clone and install](#1-clone-and-install)
+    - [2. Start a fresh local wiki](#2-start-a-fresh-local-wiki)
+    - [3. Deploy content](#3-deploy-content)
   - [Content directory layout](#content-directory-layout)
     - [Frontmatter reference](#frontmatter-reference)
     - [File uploads](#file-uploads)
@@ -22,7 +20,6 @@
   - [Local Docker environment](#local-docker-environment)
     - [Configuration](#configuration)
   - [Development](#development)
-    - [Setup](#setup)
     - [Unit tests](#unit-tests)
     - [Linting](#linting)
     - [End-to-end test](#end-to-end-test)
@@ -64,36 +61,24 @@ tool, not a sync tool.
 
 ---
 
-## How To Use
-
-### Install
-
-```bash
-npm install --save-dev @doikayt/qwiki
-```
-
-### Run
-
-```bash
-MW_PASSWORD=<wiki-password> npx qwiki <content-dir> --wiki <url> --user <username>
-```
-
-| Argument | Required | Description |
-|---|---|---|
-| `<content-dir>` | yes | Path to your Markdown content directory |
-| `--wiki` | yes | Base URL of the running MediaWiki instance |
-| `--user` | yes | Wiki username with write access |
-
-The password is always passed via `MW_PASSWORD` — never as a flag.
-
-See [Content directory layout](#content-directory-layout) for how to structure
-your Markdown files.
-
----
-
 ## Local Development Quickstart
 
-### 1. Start a fresh local wiki
+> `@doikayt/qwiki` is published to npm, but installing it standalone as a
+> dependency (`npm install --save-dev @doikayt/qwiki` + `npx qwiki`) isn't a
+> workflow this project documents yet — that's future work. Today, the
+> supported way to use qwiki is cloning this repo, which gets you the full
+> reference stack: Docker MediaWiki + extensions, Caddy, an example content
+> tree to start from, and the companion static website.
+
+### 1. Clone and install
+
+```bash
+git clone git@github.com:doikayt/qwiki.git
+cd qwiki
+npm install
+```
+
+### 2. Start a fresh local wiki
 
 ```bash
 bash infra/scripts/fresh-install.sh
@@ -104,7 +89,7 @@ up a clean instance at `http://localhost:8080`.
 
 Default admin credentials: `Admin` / `AdminPass123`
 
-### 2. Deploy content
+### 3. Deploy content
 
 ```bash
 bash infra/scripts/import-content.sh
@@ -116,6 +101,9 @@ MediaWiki API. Open `http://localhost:8080` and hard-refresh to see the result.
 Importing is additive — pages are created or updated but never deleted. To
 remove a page, either delete it manually in the wiki UI, or run
 `fresh-install.sh` to wipe and reimport from scratch.
+
+See [Content directory layout](#content-directory-layout) for how to structure
+your Markdown files.
 
 ---
 
@@ -385,13 +373,8 @@ for details.
 
 ## Development
 
-### Setup
-
-```bash
-git clone git@github.com:doikayt/qwiki.git
-cd qwiki
-npm install
-```
+See [Local Development Quickstart](#local-development-quickstart) for initial
+clone/install steps.
 
 ### Unit tests
 
