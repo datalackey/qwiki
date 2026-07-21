@@ -2,7 +2,7 @@
 /**
  * Ensure the wiki is reachable before running Playwright tests.
  * Starts Docker containers if they are stopped (non-destructive: DB volume kept).
- * Does NOT run fresh-install.sh — if the wiki needs a fresh install, run:
+ * Does NOT run fresh-wiki-install.sh — if the wiki needs a fresh install, run:
  *   npm run test:e2e
  */
 import { readFileSync } from "node:fs";

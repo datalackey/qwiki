@@ -103,7 +103,7 @@ $wgLocaltimezone = "UTC";
 ## be publicly accessible from the web.
 #$wgCacheDirectory = "$IP/cache";
 
-# SECURITY: regenerate this key for any non-local deployment (fresh-install.sh does this automatically)
+# SECURITY: regenerate this key for any non-local deployment (fresh-wiki-install.sh does this automatically)
 $wgSecretKey = "8c9ddfd94f4c8cf0a230ca3b57ff29a99e7232e43a1f8cafb9fe24b146f29dae";
 
 # Changing this will log out all existing sessions.

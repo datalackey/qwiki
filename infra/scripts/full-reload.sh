@@ -11,10 +11,10 @@ export MW_PASSWORD="$ADMIN_PASS"
 echo "==> Building website..."
 (cd "$REPO_ROOT" && npm run build:website)
 
-bash "$SCRIPT_DIR/fresh-install.sh" "$ADMIN_PASS"
+bash "$SCRIPT_DIR/fresh-wiki-install.sh" "$ADMIN_PASS"
 
 if [ -n "$CONTENT_DIR" ]; then
-  bash "$SCRIPT_DIR/import-content.sh" "$CONTENT_DIR"
+  bash "$SCRIPT_DIR/import-wiki-content.sh" "$CONTENT_DIR"
 else
-  bash "$SCRIPT_DIR/import-content.sh"
+  bash "$SCRIPT_DIR/import-wiki-content.sh"
 fi

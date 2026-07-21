@@ -40,8 +40,8 @@ function run(label: string, cmd: string, args: string[]): void {
   }
 }
 
-run('fresh install', 'bash', ['infra/scripts/fresh-install.sh']);
-run('import content', 'bash', ['infra/scripts/import-content.sh', CONTENT_DIR]);
+run('fresh install', 'bash', ['infra/scripts/fresh-wiki-install.sh']);
+run('import content', 'bash', ['infra/scripts/import-wiki-content.sh', CONTENT_DIR]);
 
 console.log('\n=== verify sidebar ===');
 const html = await (await fetch(WIKI_URL)).text();

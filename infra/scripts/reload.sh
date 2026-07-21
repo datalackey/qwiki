@@ -34,12 +34,12 @@ docker exec qwiki-caddy-1 caddy reload \
 echo "==> Redeploying content..."
 # See launch-in-cloud.sh -- it persists the real admin password here
 # since WIKI_ADMIN_PASSWORD (the env var cloud-init used) doesn't exist
-# in this shell. Without this, import-content.sh silently falls back to
+# in this shell. Without this, import-wiki-content.sh silently falls back to
 # its own wrong default and fails to authenticate.
 if [ -z "$MW_PASSWORD" ] && [ -f "$HOME/.wiki_admin_password" ]; then
   export MW_PASSWORD="$(cat "$HOME/.wiki_admin_password")"
 fi
-bash "$SCRIPT_DIR/import-content.sh"
+bash "$SCRIPT_DIR/import-wiki-content.sh"
 
 echo ""
 echo "Reload complete."

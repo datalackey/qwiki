@@ -8,7 +8,7 @@ the "Add new entry" contextual category form works once it's there.
 
 ## Flow 1: Content deploy pipeline
 
-`infra/scripts/import-content.sh` runs:
+`infra/scripts/import-wiki-content.sh` runs:
 
 ```
 npx tsx code/src/cli.ts <content-dir> --wiki <url> --user Admin
@@ -41,7 +41,7 @@ npx tsx code/src/cli.ts <content-dir> --wiki <url> --user Admin
      exactly the same API call a human edit through the wiki UI would
      produce.
 
-Every deploy is idempotent — re-running `import-content.sh` just re-issues
+Every deploy is idempotent — re-running `import-wiki-content.sh` just re-issues
 `action=edit` for every page again, overwriting with the current file
 content.
 
