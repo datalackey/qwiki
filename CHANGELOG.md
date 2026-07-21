@@ -1,5 +1,11 @@
 # @datalackey/qwiki
 
+## 0.1.21
+
+### Patch Changes
+
+-   - fix(dev): build website in the .envrc reload shortcut
+
 ## 0.1.20
 
 ### Patch Changes
