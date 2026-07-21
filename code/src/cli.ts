@@ -4,8 +4,6 @@ import { execSync } from "node:child_process";
 import { collectFiles, convertDir } from "./convert.js";
 import { deploy } from "./deploy.js";
 
-const GITHUB_REPO = "https://github.com/doikayt/qwiki";
-
 /** Print usage and exit non-zero. */
 function usage(): never {
     process.stderr.write(
