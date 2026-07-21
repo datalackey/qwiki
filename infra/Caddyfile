@@ -1,3 +1,9 @@
 wiki.doikayt.org {
 	reverse_proxy mediawiki:80
 }
+
+doikayt.org, www.doikayt.org {
+	root * /srv/website
+	file_server
+	try_files {path} {path}.html /index.html
+}
