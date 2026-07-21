@@ -155,6 +155,7 @@ export async function deploy(
             action: "edit",
             title: page.title,
             text: page.body,
+            summary: `qwiki: ${page.sourcePath}`,
             token: csrf,
         };
         if (page.model !== "wikitext") params["contentmodel"] = page.model;

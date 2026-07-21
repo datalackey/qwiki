@@ -1,15 +1,21 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
-import { join } from "node:path";
+import { join, relative } from "node:path";
 import matter from "gray-matter";
 import { convert } from "pandoc-wasm";
 
 export type ContentModel = "wikitext" | "css" | "javascript";
 
-/** Produced by convertDir() from a single Markdown file; consumed by deploy(). */
+/**
+ * Produced by convertDir() from a single Markdown file; consumed by deploy().
+ * - Producer: convertDir() in convert.ts
+ * - Consumer: deploy() in deploy.ts (title/body/model for action=edit; sourcePath for summary)
+ */
 export interface Page {
     title: string;
     body: string;
     model: ContentModel;
+    /** Path of the source .md file relative to the content dir, e.g. "categories/foo.md". */
+    sourcePath: string;
 }
 
 /** Infer MediaWiki content model from the title suffix (.css/.js), else wikitext. */
@@ -90,10 +96,11 @@ export async function convertDir(dir: string): Promise<Page[]> {
             }
         }
 
-        pages.push({ title, body, model });
+        const sourcePath = relative(dir, filePath);
+        pages.push({ title, body, model, sourcePath });
 
         for (const from of redirectFrom) {
-            pages.push({ title: from, body: `#REDIRECT [[${title}]]`, model: "wikitext" });
+            pages.push({ title: from, body: `#REDIRECT [[${title}]]`, model: "wikitext", sourcePath: `${sourcePath} (redirect)` });
         }
     }
 
