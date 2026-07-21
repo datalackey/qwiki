@@ -25,18 +25,10 @@ write_files:
       [Install]
       WantedBy=swap.target
 
-  - path: /root/.ssh/id_ed25519_qwiki
+  - path: /root/.git-credentials
     permissions: '0600'
     content: |
-      ${indent(6, github_deploy_key)}
-
-  - path: /root/.ssh/config
-    permissions: '0600'
-    content: |
-      Host github.com
-        IdentityFile /root/.ssh/id_ed25519_qwiki
-        IdentitiesOnly yes
-        StrictHostKeyChecking accept-new
+      https://x-access-token:${github_read_token}@github.com
 
 runcmd:
   # Swap
@@ -71,12 +63,12 @@ runcmd:
   - echo "dev ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/90-dev-nopasswd
   - chmod 440 /etc/sudoers.d/90-dev-nopasswd
 
-  # GitHub deploy key (read-only, doikayt/qwiki only) + repo checkout
-  - cp /root/.ssh/id_ed25519_qwiki /home/dev/.ssh/id_ed25519_qwiki
-  - cp /root/.ssh/config /home/dev/.ssh/config
-  - chown dev:dev /home/dev/.ssh/id_ed25519_qwiki /home/dev/.ssh/config
-  - chmod 600 /home/dev/.ssh/id_ed25519_qwiki /home/dev/.ssh/config
-  - sudo -u dev git clone git@github.com:doikayt/qwiki.git /home/dev/qwiki
+  # GitHub read-only access (doikayt-org-read-token, all doikayt repos) + repo checkout
+  - cp /root/.git-credentials /home/dev/.git-credentials
+  - chown dev:dev /home/dev/.git-credentials
+  - chmod 600 /home/dev/.git-credentials
+  - sudo -u dev git config --global credential.helper store
+  - sudo -u dev git clone https://github.com/doikayt/qwiki.git /home/dev/qwiki
 
   # Convenience alias for redeploying content/code without touching the DB
   - echo "alias reload='bash ~/qwiki/infra/scripts/reload.sh'" >> /home/dev/.bashrc

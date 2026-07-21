@@ -14,9 +14,9 @@ variable "do_token" {
 }
 
 variable "ssh_public_key_path" {
-  description = "Path to local SSH public key file"
+  description = "Path to the public half of the doikayt_do_login keypair (droplet login only -- git clone/pull access is handled separately by github_read_token)"
   type        = string
-  default     = "~/.ssh/id_rsa.pub"
+  default     = "~/.ssh/doikayt_do_login.pub"
 }
 
 variable "droplet_region" {
@@ -28,13 +28,13 @@ variable "droplet_region" {
 variable "droplet_size" {
   description = "DigitalOcean droplet size slug"
   type        = string
-  default     = "s-1vcpu-4gb"
+  default     = "s-2vcpu-4gb"
 }
 
-variable "github_deploy_key_path" {
-  description = "Path to the private half of a read-only GitHub deploy key for doikayt/qwiki"
+variable "github_read_token" {
+  description = "Fine-grained GitHub PAT (doikayt-org-read-token) -- read-only Contents access across all doikayt org repos, used for git clone/pull over HTTPS"
   type        = string
-  default     = "~/.ssh/doikayt_qwiki_deploy"
+  sensitive   = true
 }
 
 variable "wiki_admin_password" {
@@ -59,7 +59,7 @@ resource "digitalocean_droplet" "mediawiki" {
   size     = var.droplet_size
   ssh_keys = [digitalocean_ssh_key.default.fingerprint]
   user_data = templatefile("${path.module}/cloud-init.yaml.tpl", {
-    github_deploy_key   = file(var.github_deploy_key_path)
+    github_read_token   = var.github_read_token
     wiki_admin_password = var.wiki_admin_password
   })
 

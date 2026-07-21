@@ -28,3 +28,12 @@ infra/extensions/
 
 # Playwright output (screenshots, traces, .last-run.json)
 test-results/
+
+# Terraform local state/working files -- tfstate contains fully-resolved
+# plaintext secrets (tokens, passwords), never commit it. .terraform/ is
+# a regenerable provider-plugin cache. terraform.tfvars (if used instead
+# of .envrc) may contain real secrets too.
+infra/cloud/*/.terraform/
+infra/cloud/*/terraform.tfstate
+infra/cloud/*/terraform.tfstate.backup
+infra/cloud/*/terraform.tfvars
