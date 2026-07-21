@@ -7,6 +7,19 @@ COMPOSE="bash $INFRA_DIR/scripts/launch-docker.sh"
 
 ADMIN_PASS="${1:-AdminPass123}"
 
+# This script later does `git checkout infra/LocalSettings.php` to restore
+# the host file post-install -- that silently discards any uncommitted
+# edits (e.g. the $wgSitename/$wgMetaNamespace tweaks the README's
+# Configuration section tells you to make before running this script).
+# Fail loudly up front instead of destroying them partway through.
+if ! git -C "$REPO_ROOT" diff --quiet -- infra/LocalSettings.php; then
+  echo "ERROR: infra/LocalSettings.php has uncommitted changes." >&2
+  echo "       This script restores it from git partway through, which" >&2
+  echo "       would silently discard them. Commit or stash first:" >&2
+  echo "         git add infra/LocalSettings.php && git commit -m '...'" >&2
+  exit 1
+fi
+
 echo "==> Ensuring extensions are cloned..."
 bash "$INFRA_DIR/scripts/ensure-extensions.sh"
 # Matches the "name: qwiki" project name pinned in docker-compose.yml
