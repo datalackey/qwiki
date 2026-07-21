@@ -1,5 +1,11 @@
 # @datalackey/qwiki
 
+## 0.1.22
+
+### Patch Changes
+
+-   - fix(infra): don't silently discard uncommitted LocalSettings.php edits
+
 ## 0.1.21
 
 ### Patch Changes
