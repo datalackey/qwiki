@@ -12,6 +12,9 @@ source "$SCRIPT_DIR/do-metadata.sh"
 echo "==> Installing npm dependencies..."
 (cd "$REPO_ROOT" && npm ci)
 
+echo "==> Building website..."
+(cd "$REPO_ROOT" && npm run build:website)
+
 # NOTE: this is the droplet's ephemeral public IP, not the Reserved IP --
 # see do-metadata.sh. Fine until the Caddy/DNS cutover; revisit then.
 PUBLIC_IP=$(curl -s "$DO_METADATA_PUBLIC_IPV4")
