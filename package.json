@@ -1,6 +1,6 @@
 {
   "name": "@doikayt/qwiki",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "description": "Bootstrap a MediaWiki from local Markdown files",
   "bin": {
     "qwiki": "./dist/cli.js"

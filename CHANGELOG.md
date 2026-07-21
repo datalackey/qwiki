@@ -1,5 +1,11 @@
 # @datalackey/qwiki
 
+## 0.1.16
+
+### Patch Changes
+
+-   - feat(website): add Projects page, align colors with wiki watermelon theme
+
 ## 0.1.15
 
 ### Patch Changes
