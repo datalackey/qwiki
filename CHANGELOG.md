@@ -1,5 +1,11 @@
 # @datalackey/qwiki
 
+## 0.1.13
+
+### Patch Changes
+
+-   - fix(infra): replace GitHub deploy key with org-wide PAT, fix live-tested deploy bugs
+
 ## 0.1.12
 
 ### Patch Changes
