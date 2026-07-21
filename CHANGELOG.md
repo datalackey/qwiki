@@ -1,5 +1,11 @@
 # @datalackey/qwiki
 
+## 0.1.14
+
+### Patch Changes
+
+-   - feat(website): add static site for doikayt.org
+
 ## 0.1.13
 
 ### Patch Changes
