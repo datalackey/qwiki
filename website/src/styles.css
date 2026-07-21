@@ -3,7 +3,8 @@
 :root {
   --ink:    #1a1a1e;
   --bg:     #faf9f6;
-  --accent: #92400e;
+  --accent: #37723a;
+  --accent2: #c5171a;
   --muted:  #6b7280;
   --border: #e5e7eb;
   --font:   system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
@@ -86,7 +87,7 @@ p { margin: 0 0 1.25rem; }
 em { font-style: italic; }
 
 a { color: var(--accent); }
-a:hover { text-decoration: none; }
+a:hover { color: var(--accent2); text-decoration: none; }
 
 hr {
   border: none;

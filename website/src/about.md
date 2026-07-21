@@ -32,13 +32,4 @@ environmental, and anti-imperialist movements instead of tools that serve extrac
 and control is making a quiet, durable case that Jewish values and human decency are
 not in tension.
 
-## Get Involved
-
-Our [wiki](https://wiki.doikayt.org/wiki/Main_Page) is where we evaluate tools,
-share findings, and organize our collective knowledge. IT staff supporting
-movement-aligned organizations have constraints that colleagues in corporate or
-government settings rarely face: shoestring budgets, deplatforming risks, and
-ethical considerations that cut against the default vendor stack.
-
-To propose a tool for consideration, see our
-[New Submissions](https://wiki.doikayt.org/wiki/New_Submissions) page.
+See our [Projects](/projects.html) page for the tools we build and maintain.
