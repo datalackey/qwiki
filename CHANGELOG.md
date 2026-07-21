@@ -1,5 +1,11 @@
 # @datalackey/qwiki
 
+## 0.1.18
+
+### Patch Changes
+
+-   - feat(website,wiki): add build-commit footer link; fix sidebar layout and font sizes
+
 ## 0.1.17
 
 ### Patch Changes
