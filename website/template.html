@@ -30,5 +30,17 @@
       <p>Doikayt &middot; <a href="https://wiki.doikayt.org">wiki.doikayt.org</a> &middot; {{BUILD_COMMIT_LINK}}</p>
     </footer>
   </div>
+  <script>
+    // Point wiki.doikayt.org links at the local docker wiki (port 8080) when
+    // this site itself is being previewed locally, instead of always jumping
+    // out to the production droplet.
+    (function () {
+      var isLocal = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+      if (!isLocal) { return; }
+      document.querySelectorAll('a[href^="https://wiki.doikayt.org"]').forEach(function (a) {
+        a.href = a.href.replace('https://wiki.doikayt.org', 'http://localhost:8080');
+      });
+    })();
+  </script>
 </body>
 </html>
