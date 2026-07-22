@@ -1,8 +1,10 @@
 ---
-title: "Qwiki"
+title: "Qwiki - locally edit wiki files in markdown then deploy"
+tagline: "locally edit wiki files in markdown then deploy"
 categories:
   - Run A Wiki
-redirect_from: []
+redirect_from:
+  - Qwiki
 raw: true
 ---
 {{Tool

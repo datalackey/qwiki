@@ -1,8 +1,10 @@
 ---
-title: "Slack"
+title: "Slack - team messaging with channels threads and integrations"
+tagline: "team messaging with channels threads and integrations"
 categories:
   - Team Collaboration
-redirect_from: []
+redirect_from:
+  - Slack
 raw: true
 ---
 {{Tool

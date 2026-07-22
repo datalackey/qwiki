@@ -1,8 +1,10 @@
 ---
-title: "DigitalOcean"
+title: "DigitalOcean - Linux VPS provider for self-hosted infrastructure"
+tagline: "Linux VPS provider for self-hosted infrastructure"
 categories:
   - Self Hosting
-redirect_from: []
+redirect_from:
+  - DigitalOcean
 raw: true
 ---
 {{Tool

@@ -1,5 +1,6 @@
 ---
 title: "Words of Justice - AI co-pilot for Palestine advocacy"
+tagline: "AI co-pilot for Palestine advocacy"
 categories:
 redirect_from:
   - WordsOfJustice

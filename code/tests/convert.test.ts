@@ -169,3 +169,67 @@ describe("convertDir", () => {
         expect(page.body).not.toContain("[[Category:42]]");
     });
 });
+
+describe("tagline validation", () => {
+    it("throws when tagline is a single word", async () => {
+        const dir = fixtureDir({
+            "t.md": '---\ntitle: "X"\ntagline: "single"\nraw: true\n---\nx\n',
+        });
+        await expect(convertDir(dir)).rejects.toThrow(/must be 2–10/);
+    });
+
+    it("throws when tagline is empty string", async () => {
+        const dir = fixtureDir({
+            "t.md": '---\ntitle: "X"\ntagline: ""\nraw: true\n---\nx\n',
+        });
+        await expect(convertDir(dir)).rejects.toThrow(/must be 2–10/);
+    });
+
+    it("throws when tagline exceeds 10 words", async () => {
+        const dir = fixtureDir({
+            "t.md": '---\ntitle: "X"\ntagline: "one two three four five six seven eight nine ten eleven"\nraw: true\n---\nx\n',
+        });
+        await expect(convertDir(dir)).rejects.toThrow(/must be 2–10/);
+    });
+
+    it("accepts exactly 2 words", async () => {
+        const dir = fixtureDir({
+            "t.md": '---\ntitle: "X"\ntagline: "two words"\nraw: true\n---\nx\n',
+        });
+        await expect(convertDir(dir)).resolves.toBeDefined();
+    });
+
+    it("accepts exactly 10 words", async () => {
+        const dir = fixtureDir({
+            "t.md": '---\ntitle: "X"\ntagline: "one two three four five six seven eight nine ten"\nraw: true\n---\nx\n',
+        });
+        await expect(convertDir(dir)).resolves.toBeDefined();
+    });
+
+    it("pages without tagline frontmatter are not affected", async () => {
+        const dir = fixtureDir({
+            "t.md": '---\ntitle: "X"\nraw: true\n---\nx\n',
+        });
+        await expect(convertDir(dir)).resolves.toBeDefined();
+    });
+});
+
+describe("tagline injection", () => {
+    it("inserts tagline after |company= when body has no |tagline=", async () => {
+        const dir = fixtureDir({
+            "t.md": '---\ntitle: "X"\ntagline: "two good words"\nraw: true\n---\n{{Tool\n|company=Acme\n|url=acme.com\n}}\n',
+        });
+        const pages = await convertDir(dir);
+        expect(byTitle(pages, "X").body).toContain("|company=Acme\n|tagline=two good words\n");
+    });
+
+    it("replaces existing |tagline= value with frontmatter tagline", async () => {
+        const dir = fixtureDir({
+            "t.md": '---\ntitle: "X"\ntagline: "updated tag line"\nraw: true\n---\n{{Tool\n|company=Acme\n|tagline=old value here\n}}\n',
+        });
+        const pages = await convertDir(dir);
+        const body = byTitle(pages, "X").body;
+        expect(body).toContain("|tagline=updated tag line");
+        expect(body).not.toContain("old value here");
+    });
+});

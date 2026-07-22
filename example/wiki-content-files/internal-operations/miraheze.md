@@ -1,8 +1,10 @@
 ---
-title: "Miraheze"
+title: "Miraheze - free volunteer-run MediaWiki hosting for any wiki"
+tagline: "free volunteer-run MediaWiki hosting for any wiki"
 categories:
   - Run A Wiki
-redirect_from: []
+redirect_from:
+  - Miraheze
 raw: true
 ---
 {{Tool

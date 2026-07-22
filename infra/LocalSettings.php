@@ -162,3 +162,5 @@ wfLoadExtension( 'Cargo' );
 wfLoadExtension( 'PageForms' );
 
 $wgShowExceptionDetails = true; # Disable in production
+
+$wgRestrictDisplayTitle = false; # Allow {{DISPLAYTITLE}} to show company name only, suppressing the tagline from the h1

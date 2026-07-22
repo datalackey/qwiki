@@ -71,6 +71,15 @@ export async function convertDir(dir: string): Promise<Page[]> {
         if (title === undefined || title === "")
             throw new Error(`Missing required "title" field in: ${filePath}`);
 
+        const tagline = data["tagline"] as string | undefined;
+        if (tagline !== undefined) {
+            const wordCount = tagline.trim().split(/\s+/).filter(Boolean).length;
+            if (wordCount < 2 || wordCount > 10)
+                throw new Error(
+                    `"tagline" in ${filePath} has ${wordCount} word(s); must be 2–10.`
+                );
+        }
+
         const categories: string[] = Array.isArray(data["categories"])
             ? (data["categories"] as unknown[]).filter((c): c is string => typeof c === "string")
             : [];
@@ -85,6 +94,13 @@ export async function convertDir(dir: string): Promise<Page[]> {
         let body: string;
         if (isRaw) {
             body = content.trimStart();
+            if (tagline !== undefined) {
+                if (/^\|tagline=/m.test(body)) {
+                    body = body.replace(/^\|tagline=[^\n]*/m, `|tagline=${tagline}`);
+                } else {
+                    body = body.replace(/(^\|company=[^\n]*\n)/m, `$1|tagline=${tagline}\n`);
+                }
+            }
             process.stdout.write(`  [raw]    ${title}\n`);
         } else {
             process.stdout.write(`  [pandoc] ${title}\n`);

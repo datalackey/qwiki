@@ -1,7 +1,9 @@
 ---
-title: "ClickUp"
+title: "ClickUp - cloud task manager with kanban and time tracking"
+tagline: "cloud task manager with kanban and time tracking"
 categories:
-redirect_from: []
+redirect_from:
+  - ClickUp
 raw: true
 ---
 {{Tool
