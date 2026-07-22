@@ -3,8 +3,8 @@
 
 ### Legal
 
-We're initially organizing as a 501(c)(3) nonprofit. As revenue-generating
-work matures, we plan to roll operational activity into a wholly owned
+We're now seeking to organize as a 501(c)(3) nonprofit. As revenue-generating
+work matures, we plan to roll some operational activity into a wholly owned
 for-profit subsidiary -- keeping the nonprofit's mission and governance
 intact while giving the operational side room to grow sustainably.
 
@@ -25,14 +25,6 @@ workflows](https://medium.com/@clement_86740/the-code-factory-lights-out-coding-
   Google Apps Script (GAS) expertise. Specific revenue projections aren't
   published here, but are available on request for prospective funders.
 
-
-
-### Hiring
-
-We plan to actively seek talent from marginalized communities --
-including Palestinian and Lebanese technologists, communities that have
-borne direct, disproportionate harm from decades of US and Israeli
-policy.
 
 ### Compensation Philosophy
 
