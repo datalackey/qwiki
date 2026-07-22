@@ -1,5 +1,16 @@
 # @datalackey/qwiki
 
+## 0.1.25
+
+### Patch Changes
+
+-   - fix(content): point wiki About page link at website About page
+    - feat(content): add Office Suite category with OnlyOffice and Nextcloud
+    - feat(content): add Email category and Proton Mail
+    - feat(sidebar): hover tooltips for CategoryTree leaves and categories
+    - feat(website): split About page into tabbed sub-pages
+    - fix(sidebar): hide empty-category clutter in nav tree
+
 ## 0.1.24
 
 ### Patch Changes
