@@ -1,5 +1,12 @@
 # @datalackey/qwiki
 
+## 0.1.23
+
+### Patch Changes
+
+-   - fix(deploy): replace **QWIKI_BUILD_COMMIT** placeholder with QWIKI_COMMIT_LINK
+    - feat(content): tagline convention — pipeline validation, backfill, new categories and Montastic
+
 ## 0.1.22
 
 ### Patch Changes
