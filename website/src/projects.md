@@ -4,12 +4,37 @@ Here are the projects we have either in beta launch, or in development:
 
 ---
 
-## doikayt.org Wiki
+## Doikayt Wiki
 
 Our [wiki](https://wiki.doikayt.org/wiki/Main_Page)  is live -- and it is the first tool 
 built with our [qwiki](https://github.com/doikayt/qwiki) framework. Its goal is 
 to serve as the go-to hub for collaborative curation of digital tools for
 technicians supporting organizations whose mission aligns with our charter.  
+
+We bootstrapped the wiki with easy-to-edit, locally-based Markdown content, which our
+converter pipeline transforms into wiki content directly via the MediaWiki API. Every
+entry follows a known structure (schema), enforced by our shared Tool template -- the
+same schema live contributors use when adding new tools through our New Submission
+form.
+
+That known schema has let us move fast on content: pointing Claude Code at a tool's
+website -- giving a quick prompt: "look up pricing, license, and hosting details for X" -- 
+and then having Claude draft the description. This is now a routine part of our
+new entry update workfflow.
+
+### Future Enhancements
+
+Near term, we plan to close the loop in the other direction: capturing content
+submitted live on the wiki (via the New Submission form) and feeding it back into
+git, so the pipeline stays the single source of truth for redeploys. See
+[doikayt/qwiki#1](https://github.com/doikayt/qwiki/issues/1) for the proposed
+approach.
+
+Longer term we plan to expose our content as a tool AI language models can leverage via
+[Model Context Protocol](https://en.wikipedia.org/wiki/Model_Context_Protocol).
+The goal is to enable conversations along the lines of:  "I am looking for a low (or no)
+cost tool to streamline the process of submitting my organization's weekly events to
+various community calendars."
 
 ---
 
@@ -19,8 +44,8 @@ technicians supporting organizations whose mission aligns with our charter.
 
 **Bootstrap a MediaWiki from local Markdown files.**
 
-[qwiki](https://github.com/doikayt/qwiki) is a CLI tool for unix command savvy-technical teams who
-have content to publish but don't want to be slowed down by a wiki web UI. You write
+[qwiki](https://github.com/doikayt/qwiki) is a CLI tool for Unix command savvy-technical teams who
+have content to publish but don't want to be slowed down by a Wiki web UI. You write
 pages as Markdown files, organize them with grep and your favorite 
 editor (which, of course, is vi ;^), and deploy everything to a running MediaWiki in one command
 (Current cloud support is for [Digital Ocean](https://cloud.digitalocean.com/) only, but contributions are welcome.)
@@ -70,13 +95,12 @@ and major bumps require a handwritten changeset. CI validates, tests, and publis
 **Support for auto-generation and verification of documentation from code**
 
 [build-tools](https://github.com/doikayt/build-tools) layers on top of [typescript-build-config](https://github.com/doikayt/typescript-build-config), and serves as the home for shared
-development infrastructure across doikayt projects. The unifying theme is
+development infrastructure across Doikayt projects. The unifying theme is
 automated documentation generation and verification: documentation drift —
 inconsistency between source artifacts and the documentation that describes them —
 is treated as a build failure, not a review comment.
 
-Tools follow a progressive disclosure UX philosophy: the default invocation works
-correctly for the most common case with no flags required; advanced options are
-available but never forced. The flagship package is [`@doikayt/autogen-markdown-doc`](https://github.com/doikayt/build-tools/tree/main/javascript/autogen-markdown-doc),
+
+The flagship package is [`@doikayt/autogen-markdown-doc`](https://github.com/doikayt/build-tools/tree/main/javascript/autogen-markdown-doc),
 which keeps Markdown tables of contents and Mermaid build-graph diagrams
 synchronized with source in a single command.

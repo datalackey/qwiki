@@ -27,7 +27,9 @@ For those interested, our [website](https://www.doikayt.org/about.html) goes int
 
 ## The Software
 
-See [this repo](https://github.com/doikayt/qwiki) to view
-the code behind this wiki (in its current state, and as we pursue
-databas-ification and LLM integration) — deployed from commit QWIKI_COMMIT_LINK.
+See [this repo](https://github.com/doikayt/qwiki) to view the code behind this
+wiki, and [here](https://www.doikayt.org/projects.html#doikayt-wiki) for more information 
+about new features we plan to roll out soon.
+
+Deployed from commit QWIKI_COMMIT_LINK.
 
