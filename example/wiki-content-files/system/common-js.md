@@ -205,6 +205,33 @@ raw: true
 	} );
 }() );
 
+/* Sidebar CategoryTree: strip " - tagline" suffix from leaf labels so only
+   the product name shows. Full title (with tagline) is preserved in category
+   listing pages. MutationObserver covers nodes loaded via AJAX on expansion. */
+( function () {
+	'use strict';
+
+	function stripTaglines( root ) {
+		$( root ).find( '#mw-panel .CategoryTreeItem a' ).each( function () {
+			var t = $( this ).text(), i = t.indexOf( ' - ' );
+			if ( i !== -1 ) { $( this ).text( t.slice( 0, i ) ); }
+		} );
+	}
+
+	$( function () {
+		var panel = document.getElementById( 'mw-panel' );
+		if ( !panel ) { return; }
+		stripTaglines( document );
+		new MutationObserver( function ( mutations ) {
+			mutations.forEach( function ( m ) {
+				m.addedNodes.forEach( function ( n ) {
+					if ( n.nodeType === 1 ) { stripTaglines( n ); }
+				} );
+			} );
+		} ).observe( panel, { childList: true, subtree: true } );
+	} );
+}() );
+
 /* Inject a "built at <commit>" link into the wiki footer. The commit hash is
    stored in MediaWiki:Doikayt-build-commit and written on every qwiki deploy. */
 ( function () {

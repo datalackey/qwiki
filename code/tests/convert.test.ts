@@ -220,6 +220,20 @@ describe("tagline validation", () => {
         });
         await expect(convertDir(dir)).resolves.toBeDefined();
     });
+
+    it("throws when company name contains a hyphen", async () => {
+        const dir = fixtureDir({
+            "t.md": '---\ntitle: "Acme-Corp - great two word tool"\ntagline: "great two word tool"\nraw: true\n---\nx\n',
+        });
+        await expect(convertDir(dir)).rejects.toThrow(/contains a hyphen/);
+    });
+
+    it("accepts a company name with spaces but no hyphens", async () => {
+        const dir = fixtureDir({
+            "t.md": '---\ntitle: "Acme Corp - great two word tool"\ntagline: "great two word tool"\nraw: true\n---\nx\n',
+        });
+        await expect(convertDir(dir)).resolves.toBeDefined();
+    });
 });
 
 describe("tagline injection", () => {

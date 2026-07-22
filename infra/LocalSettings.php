@@ -156,7 +156,7 @@ wfLoadExtension( 'TitleBlacklist' );
 
 wfLoadExtension( 'CategoryTree' );
 $wgCategoryTreeSidebarRoot = 'Domains'; # CHANGE: root category key for sidebar tree (must match your top-level Category:X)
-$wgCategoryTreeSidebarOptions = [ 'depth' => 2 ]; # show 2 levels expanded by default in the sidebar
+$wgCategoryTreeSidebarOptions = [ 'depth' => 5 ]; # show up to 5 levels expanded by default in the sidebar
 
 wfLoadExtension( 'Cargo' );
 wfLoadExtension( 'PageForms' );

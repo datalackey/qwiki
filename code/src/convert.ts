@@ -78,6 +78,12 @@ export async function convertDir(dir: string): Promise<Page[]> {
                 throw new Error(
                     `"tagline" in ${filePath} has ${wordCount} word(s); must be 2–10.`
                 );
+            const sepIdx = title.indexOf(" - ");
+            if (sepIdx !== -1 && title.slice(0, sepIdx).includes("-"))
+                throw new Error(
+                    `Company name in ${filePath} contains a hyphen; hyphens are ` +
+                    `reserved for the " - " title separator — use spaces only.`
+                );
         }
 
         const categories: string[] = Array.isArray(data["categories"])

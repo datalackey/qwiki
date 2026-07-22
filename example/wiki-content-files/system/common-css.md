@@ -59,10 +59,13 @@ raw: true
   border-top: 1px solid #e8a0a0;
 }
 
-/* CategoryTree sidebar: match nav link size and prevent wrapping */
+/* CategoryTree sidebar: match nav link size, prevent wrapping, allow h-scroll */
 .CategoryTreeItem bdi a {
   font-size: 12px !important;
   white-space: nowrap !important;
+}
+#mw-panel .portal .body {
+  overflow-x: auto;
 }
 
 /* ── Doikayt watermelon theme: white bg, black text, badge green + red ── */
