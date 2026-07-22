@@ -20,15 +20,34 @@ mkdirSync(DIST, { recursive: true });
 copyFileSync(resolve(SRC, 'styles.css'), resolve(DIST, 'styles.css'));
 copyFileSync(resolve(ROOT, 'infra/images/logo.png'), resolve(DIST, 'logo.png'));
 
+// Pages sharing a horizontal sub-nav; order here sets tab order.
+const ABOUT_TABS = [
+  { slug: 'about', label: 'Our Name' },
+  { slug: 'about-mission', label: 'Mission' },
+  { slug: 'about-company-structure', label: 'Company Structure' },
+  { slug: 'about-people', label: 'People' },
+];
+
+function buildTabsHtml(slug) {
+  if (!ABOUT_TABS.some(t => t.slug === slug)) return '';
+  const links = ABOUT_TABS.map(t => {
+    const cls = t.slug === slug ? ' class="active"' : '';
+    return `<a href="/${t.slug}.html"${cls}>${t.label}</a>`;
+  }).join('\n    ');
+  return `<nav class="about-tabs">\n    ${links}\n  </nav>`;
+}
+
 const pages = readdirSync(SRC).filter(f => f.endsWith('.md'));
 for (const file of pages) {
   const slug = basename(file, '.md');
   const md = readFileSync(resolve(SRC, file), 'utf8');
   const titleMatch = md.match(/^#[ \t]+(.+)$/m);
   const pageTitle = titleMatch ? titleMatch[1] : slug;
+  const body = titleMatch ? md.replace(titleMatch[0], '') : md;
   const html = template
-    .replace('{{PAGE_TITLE}}', pageTitle)
-    .replace('{{BODY}}', parse(md));
+    .replaceAll('{{PAGE_TITLE}}', pageTitle)
+    .replace('{{TABS}}', buildTabsHtml(slug))
+    .replace('{{BODY}}', parse(body));
   writeFileSync(resolve(DIST, `${slug}.html`), html);
 }
 

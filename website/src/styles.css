@@ -107,6 +107,30 @@ hr {
   margin: 1.5rem 0;
 }
 
+/* ── About page tabs ── */
+
+.about-tabs {
+  display: flex;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  margin: 0 0 1.5rem;
+}
+
+.about-tabs a {
+  padding: 0.5rem 0;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.about-tabs a:hover { color: var(--accent); }
+
+.about-tabs a.active {
+  color: var(--ink);
+  box-shadow: inset 0 -2px 0 var(--accent2);
+}
+
 /* ── Footer ── */
 
 footer {
