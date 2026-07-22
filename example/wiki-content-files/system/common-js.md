@@ -205,27 +205,107 @@ raw: true
 	} );
 }() );
 
-/* Sidebar CategoryTree: strip " - tagline" suffix from leaf labels so only
-   the product name shows. Full title (with tagline) is preserved in category
-   listing pages. MutationObserver covers nodes loaded via AJAX on expansion. */
+/* Sidebar CategoryTree:
+   - Leaf (page) labels: strip " - tagline" suffix so only the product name
+     shows, and move the full "Name - tagline" text onto the title attribute
+     so it's still available as a hover tooltip. Category listing pages are
+     unaffected -- only the sidebar tree text is touched.
+   - Category labels: replace the native (redundant, page-name-only) title
+     tooltip with the category's one-line description, pulled from the first
+     paragraph of the category page's wikitext via a batched API call.
+   MutationObserver covers nodes loaded via AJAX on expansion. */
 ( function () {
 	'use strict';
 
-	function stripTaglines( root ) {
-		$( root ).find( '#mw-panel .CategoryTreeItem a' ).each( function () {
-			var t = $( this ).text(), i = t.indexOf( ' - ' );
-			if ( i !== -1 ) { $( this ).text( t.slice( 0, i ) ); }
+	var categoryDescCache   = {};
+	var categoryDescPending = {};
+
+	function firstParagraph( wikitext ) {
+		var lines = ( wikitext || '' ).split( '\n' );
+		for ( var i = 0; i < lines.length; i++ ) {
+			// Strip raw HTML first -- pandoc's markdown->mediawiki writer emits a
+			// <span id="..."></span> anchor immediately before every heading, which
+			// would otherwise be picked up as the "first line" of body text.
+			var line = lines[ i ].trim().replace( /<[^>]+>/g, '' ).trim();
+			if ( !line || /^=+/.test( line ) ) { continue; }
+			return line.replace( /\[\[(?:[^\]|]+\|)?([^\]]+)\]\]/g, '$1' );
+		}
+		return '';
+	}
+
+	function applyCategoryDescriptions( titleToDesc ) {
+		$( '#mw-panel .CategoryTreeItem a' ).each( function () {
+			var $a  = $( this );
+			var cur = $a.attr( 'title' );
+			if ( cur && titleToDesc[ cur ] ) { $a.attr( 'title', titleToDesc[ cur ] ); }
 		} );
+	}
+
+	function fetchCategoryDescriptions( titles ) {
+		var batches = [];
+		for ( var i = 0; i < titles.length; i += 50 ) { batches.push( titles.slice( i, i + 50 ) ); }
+
+		batches.forEach( function ( batch ) {
+			new mw.Api().get( {
+				action: 'query',
+				titles: batch.join( '|' ),
+				prop: 'revisions',
+				rvprop: 'content',
+				rvslots: 'main',
+				formatversion: 2
+			} ).then( function ( data ) {
+				var titleToDesc = {};
+				( ( data.query && data.query.pages ) || [] ).forEach( function ( page ) {
+					batch.forEach( function ( t ) { delete categoryDescPending[ t ]; } );
+					if ( !page.revisions ) { return; }
+					var desc = firstParagraph( page.revisions[ 0 ].slots.main.content );
+					if ( !desc ) { return; }
+					categoryDescCache[ page.title ] = desc;
+					titleToDesc[ page.title ] = desc;
+				} );
+				applyCategoryDescriptions( titleToDesc );
+			} );
+		} );
+	}
+
+	function normalizeTree( root ) {
+		var toFetch = [];
+
+		$( root ).find( '#mw-panel .CategoryTreeItem a' ).each( function () {
+			var $a    = $( this );
+			var href  = $a.attr( 'href' ) || '';
+			var label = $a.attr( 'title' ) || '';
+			var isCategory = /\/Category:/.test( href ) || /^Category:/.test( label );
+
+			if ( isCategory ) {
+				if ( !label ) { return; }
+				if ( categoryDescCache[ label ] ) {
+					$a.attr( 'title', categoryDescCache[ label ] );
+				} else if ( !categoryDescPending[ label ] ) {
+					categoryDescPending[ label ] = true;
+					toFetch.push( label );
+				}
+				return;
+			}
+
+			var t = $a.text(), i = t.indexOf( ' - ' );
+			if ( i !== -1 ) {
+				$a.attr( 'title', t );
+				$a.text( t.slice( 0, i ) );
+			}
+		} );
+
+		if ( toFetch.length ) { fetchCategoryDescriptions( toFetch ); }
 	}
 
 	$( function () {
 		var panel = document.getElementById( 'mw-panel' );
 		if ( !panel ) { return; }
-		stripTaglines( document );
+		normalizeTree( document );
 		new MutationObserver( function ( mutations ) {
 			mutations.forEach( function ( m ) {
 				m.addedNodes.forEach( function ( n ) {
-					if ( n.nodeType === 1 ) { stripTaglines( n ); }
+					if ( n.nodeType === 1 ) { normalizeTree( n ); }
 				} );
 			} );
 		} ).observe( panel, { childList: true, subtree: true } );
