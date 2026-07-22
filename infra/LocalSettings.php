@@ -124,9 +124,13 @@ $wgRightsIcon = "$wgResourceBasePath/resources/assets/licenses/cc-by.png";
 # Path to the GNU diff3 utility. Used for conflict resolution.
 $wgDiff3 = "/usr/bin/diff3";
 
-# Local dev instance: allow anonymous editing so wipe/fresh-install cycles
-# (which recreate the DB and Admin account each time) don't force a re-login.
-$wgGroupPermissions["*"]["edit"] = true;
+# Login required to edit -- MediaWiki's own core default for the "*" (anonymous)
+# group is edit=true, so this must be an explicit false, not just an absent
+# override. Without this, anonymous users can submit via Form:Tool / New
+# Submission (PageForms saves through the standard edit action, no separate
+# ACL of its own), bypassing the account-request gate described on Main Page.
+# deploy.ts always authenticates as Admin, so this doesn't affect the pipeline.
+$wgGroupPermissions["*"]["edit"] = false;
 
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, e.g. 'vector' or 'monobook':
