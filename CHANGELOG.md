@@ -1,5 +1,13 @@
 # @datalackey/qwiki
 
+## 0.1.26
+
+### Patch Changes
+
+-   - feat(website): point wiki links at local docker instance when previewing locally
+    - feat(website): flesh out About page Company Structure and People & Culture tabs
+    - feat(website): heading anchors + local/prod link rewriting for content links
+
 ## 0.1.25
 
 ### Patch Changes
