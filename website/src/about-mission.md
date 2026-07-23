@@ -1,22 +1,39 @@
 # About
 
-Judaism is increasingly perceived, by a growing number of people worldwide, as a
-supremacist religion — one that treats Jewish life as worth more than the lives of
-Palestinians. This perception has a specific source: the conduct of the Israeli state
-and the rhetoric of some of its officials.
+## Mission
 
-None of that is Judaism. It is a political project carried out by a state, defended
-by some in the name of a religion that the overwhelming majority of its adherents,
-across history and across the world, have practiced as something very different: a
-tradition of argument, of obligation to the stranger, of *tikkun olam* — repairing
-the world for the collective good of all humankind — and of doikayt, the conviction
-that justice is built here, in the place you actually live, through the work you
-actually do.
+### Technical
 
-We think the most effective answer to rising antisemitism is not argument alone.
-It's example. Every Jewish technologist who chooses to build tools that serve labor,
-environmental, and anti-imperialist movements instead of tools that serve extraction
-and control is making a quiet, durable case that Jewish values and human decency are
-not in tension.
+Become:
 
-See our [Projects](/projects.html) page for the tools we build and maintain.
+- The premier nonprofit provider of frameworks and user-facing applications
+  that streamline the operations of movement-aligned organizations whose
+  charters dovetail with ours.
+- Thought leaders in AI-centric TypeScript-based tooling -- an org whose
+  internal delivery mechanism is itself AI-native, built around a
+  spec-to-code workflow model.
+
+### Community
+
+As a key partner to movement-aligned organizations that use our products and
+services, help those organizations achieve their goals -- win elections, build
+union strength -- by engaging directly with them to capture their
+requirements and build tools that meet those requirements.
+
+### Success Drivers
+
+Why we think this mission has a real shot right now:
+
+- **Rising political urgency.** Growing frustration with the direction of the
+  country is translating into real motivation for people to get involved and
+  make change.
+- **Disillusioned tech talent.** Young technologists are increasingly
+  disillusioned with Big Tech -- some are being forced to train their own AI
+  replacements before being laid off, and those who stay are watching their
+  work get funneled into things like military AI targeting systems and
+  addictive, engagement-maximizing products like Facebook. That saps
+  motivation and any sense of connection to the work.
+- **A deep, motivated talent pool.** Between those two forces, there's a
+  large and growing pool of technologists with a grudge against the systems
+  they've been building for -- exactly the people primed to build for a
+  mission like ours instead.
