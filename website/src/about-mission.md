@@ -24,16 +24,9 @@ requirements and build tools that meet those requirements.
 
 Why we think this mission has a real shot right now:
 
-- **Rising political urgency.** Growing frustration with the direction of the
-  country is translating into real motivation for people to get involved and
-  make change.
 - **Disillusioned tech talent.** Young technologists are increasingly
   disillusioned with Big Tech -- some are being forced to train their own AI
   replacements before being laid off, and those who stay are watching their
   work get funneled into things like military AI targeting systems and
-  addictive, engagement-maximizing products like Facebook. That saps
+  child addicting, highly surveilled and censored services like Facebook. That saps
   motivation and any sense of connection to the work.
-- **A deep, motivated talent pool.** Between those two forces, there's a
-  large and growing pool of technologists with a grudge against the systems
-  they've been building for -- exactly the people primed to build for a
-  mission like ours instead.
