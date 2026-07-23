@@ -9,9 +9,12 @@ Become:
 - The premier nonprofit provider of frameworks and user-facing applications
   that streamline the operations of movement-aligned organizations whose
   charters dovetail with ours.
-- Thought leaders in AI-centric TypeScript-based tooling -- an org whose
-  internal delivery mechanism is itself AI-native, built around a
-  spec-to-code workflow model.
+
+- Thought leaders in development of AI-centric TypeScript-based tooling, and apps -- 
+  sharing best practices related to building out an engineering organization  
+  around an  AI-native, spec-to-code workflow model.
+
+
 
 ### Community
 
