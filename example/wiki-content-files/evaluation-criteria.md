@@ -7,7 +7,7 @@ redirect_from: []
 # Evaluation Criteria
 
 Criteria applied when comparing candidate approaches across this
-wiki.
+Wiki.
 
 | Criterion       | Notes                                   |
 |------------------|-------------------------------------------|

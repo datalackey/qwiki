@@ -24,7 +24,7 @@ For more information, see [Our Name](https://www.doikayt.org/about.html) on our 
 ## The Software
 
 See [this repo](https://github.com/doikayt/qwiki) to view the code behind this
-wiki, and [here](https://www.doikayt.org/projects.html#doikayt-wiki) for more information 
+Wiki, and [here](https://www.doikayt.org/projects.html#doikayt-wiki) for more information 
 about new features we plan to roll out soon.
 
 Deployed from commit QWIKI_COMMIT_LINK.

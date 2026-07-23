@@ -6,13 +6,13 @@ Here are the projects we have either in beta launch, or in development:
 
 ## Doikayt Wiki
 
-Our [wiki](https://wiki.doikayt.org/wiki/Main_Page)  is live -- and it is the first tool 
+Our [Wiki](https://wiki.doikayt.org/wiki/Main_Page)  is live -- and it is the first tool 
 built with our [qwiki](https://github.com/doikayt/qwiki) framework. Its goal is 
 to serve as the go-to hub for collaborative curation of digital tools for
 technicians supporting organizations whose mission aligns with our charter.  
 
-We bootstrapped the wiki with easy-to-edit, locally-based Markdown content, which our
-converter pipeline transforms into wiki content directly via the MediaWiki API. Every
+We bootstrapped the Wiki with easy-to-edit, locally-based Markdown content, which our
+converter pipeline transforms into Wiki content directly via the MediaWiki API. Every
 entry follows a known structure (schema), enforced by our shared Tool template -- the
 same schema live contributors use when adding new tools through our New Submission
 form.
@@ -25,7 +25,7 @@ new entry update workfflow.
 ### Future Enhancements
 
 Near term, we plan to close the loop in the other direction: capturing content
-submitted live on the wiki (via the New Submission form) and feeding it back into
+submitted live on the Wiki (via the New Submission form) and feeding it back into
 git, so the pipeline stays the single source of truth for redeploys. See
 [doikayt/qwiki#1](https://github.com/doikayt/qwiki/issues/1) for the proposed
 approach.

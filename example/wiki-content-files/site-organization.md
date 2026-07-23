@@ -71,7 +71,7 @@ Tool page titles are composed of two parts:
     {Company Name} - {Tagline}
 
 The **tagline** is a 2–10 word phrase describing what the tool does in the
-context of this wiki's operational area (validated by the New Submission form).
+context of this Wiki's operational area (validated by the New Submission form).
 Example: `Words of Justice - AI co-pilot for Palestine advocacy`.
 
 A redirect from the bare company name (e.g. `WordsOfJustice`) is created
