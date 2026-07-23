@@ -1,5 +1,13 @@
 # @datalackey/qwiki
 
+## 0.1.28
+
+### Patch Changes
+
+-   - feat(content): add Mattermost and Rocket.Chat as Slack peers
+    - feat(website): add content images to home and About "Our Name" pages
+    - fix(content): capitalize "Wiki" consistently when referring to our own Wiki
+
 ## 0.1.27
 
 ### Patch Changes
