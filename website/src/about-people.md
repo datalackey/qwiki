@@ -16,15 +16,17 @@ based development work.
 ## Doikayt Vibe
 
 We want to work with people who care about more than a paycheck -- people
-who want to build a high-performance engineering culture. We strive:
+who want to build a high-performance engineering culture.
 
+<p class="clear-left">We strive:</p>
+
+- for transparency in our mission, financing, and
+  [compensation policy](/about-company-structure.html#compensation-philosophy)
 - to turn out software that:
     - **delights the customers who use it**
     - **gives the engineers who build it** a real sense of pride in
       craftsmanship, and an environment where they can learn from
       world-class peers
-- for transparency in our mission, financing, and
-  [compensation policy](/about-company-structure.html#compensation-philosophy)
 
 We reject cancel culture -- the deliberately engineered environment in the
 US where everyone is primed to hate each other. We don't police prospective
