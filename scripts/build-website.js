@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, mkdirSync, copyFileSync, readdirSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, copyFileSync, readdirSync, existsSync } from 'fs';
 import { resolve, dirname, basename } from 'path';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
@@ -39,6 +39,17 @@ mkdirSync(DIST, { recursive: true });
 
 copyFileSync(resolve(SRC, 'styles.css'), resolve(DIST, 'styles.css'));
 copyFileSync(resolve(ROOT, 'infra/images/logo.png'), resolve(DIST, 'logo.png'));
+
+// Website-only content images (e.g. About/home page photos) -- distinct from
+// infra/images/, which holds the site logo shared with the wiki deploy.
+const IMAGES_SRC = resolve(SRC, 'images');
+if (existsSync(IMAGES_SRC)) {
+  const IMAGES_DIST = resolve(DIST, 'images');
+  mkdirSync(IMAGES_DIST, { recursive: true });
+  for (const file of readdirSync(IMAGES_SRC)) {
+    copyFileSync(resolve(IMAGES_SRC, file), resolve(IMAGES_DIST, file));
+  }
+}
 
 // Pages sharing a horizontal sub-nav; order here sets tab order.
 const ABOUT_TABS = [

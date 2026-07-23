@@ -78,6 +78,7 @@ main {
   flex: 1;
   max-width: 680px;
   padding: 2.5rem 2rem 4rem;
+  overflow: auto; /* clearfix: contains floated images (see .float-photo) */
 }
 
 h1 {
@@ -131,6 +132,17 @@ hr {
   box-shadow: inset 0 -2px 0 var(--accent2);
 }
 
+/* ── Inline content images ── */
+
+.float-photo {
+  float: right;
+  width: 260px;
+  max-width: 42%;
+  margin: 0 0 1rem 1.5rem;
+  border-radius: 12px;
+  display: block;
+}
+
 /* ── Footer ── */
 
 footer {
@@ -169,4 +181,11 @@ footer a { color: var(--muted); }
   }
 
   h1 { font-size: 1.25rem; }
+
+  .float-photo {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 1rem;
+  }
 }
