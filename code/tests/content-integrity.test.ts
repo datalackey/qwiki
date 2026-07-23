@@ -1,10 +1,20 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const CONTENT_DIR = resolve(__dirname, "../../example/wiki-content-files");
+
+function findMarkdownFiles(dir: string): string[] {
+    const results: string[] = [];
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const full = resolve(dir, entry.name);
+        if (entry.isDirectory()) results.push(...findMarkdownFiles(full));
+        else if (entry.name.endsWith(".md")) results.push(full);
+    }
+    return results;
+}
 
 describe("content integrity", () => {
     it('sidebar "New Submission" entry links to Project:New Submission', () => {
@@ -44,5 +54,28 @@ describe("content integrity", () => {
         expect(js).toContain("function getFullUrl()");
         expect(js).toContain("protocol + '://' + domain");
         expect(js).toContain("probe( getFullUrl() )");
+    });
+
+    it("every Tool page's category= matches an actual Category: page — regression: Akaunting used \"Finance & Accounting\" (with spaces) but the real page is \"Finance&Accounting\", so it silently landed in an orphaned category and never showed up in the sidebar tree", () => {
+        const files = findMarkdownFiles(CONTENT_DIR);
+
+        const categoryTitles = new Set<string>();
+        for (const file of files) {
+            const content = readFileSync(file, "utf8");
+            const m = content.match(/^title:\s*"Category:([^"]+)"/m);
+            if (m) categoryTitles.add(m[1]);
+        }
+
+        for (const file of files) {
+            const content = readFileSync(file, "utf8");
+            if (!content.includes("{{Tool")) continue;
+            const m = content.match(/\|category=([^\n]+)/);
+            expect(m, `${file}: Tool page has no |category= field`).toBeTruthy();
+            const category = m![1].trim();
+            expect(
+                categoryTitles.has(category),
+                `${file}: category "${category}" has no matching Category: page (check spacing/typos, e.g. "&" vs " & ")`
+            ).toBe(true);
+        }
     });
 });

@@ -23,5 +23,5 @@ Akaunting's servers to validate your license tier -- worth knowing if full data
 sovereignty (no external dependency at all) is a hard requirement, since this isn't
 quite that despite being open source.
 |rejected_alternatives=
-|category=Finance & Accounting
+|category=Finance&Accounting
 }}
