@@ -11,6 +11,8 @@ stream-based data processing and personalization techniques for mobile devices.
 These days Chris relies on hordes of AI demons to carry out his mostly TypeScript
 based development work.
 
+<img class="float-photo float-photo-left float-photo-small" src="/images/tech-workshop.webp" alt="Women in hijabs collaborating at laptops during a UX/tech workshop.">
+
 ## Doikayt Vibe
 
 We want to work with people who care about more than a paycheck -- people

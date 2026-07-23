@@ -97,6 +97,21 @@ h2 {
 
 p { margin: 0 0 1rem; }
 
+/* Flush-left to match p/h1/h2 -- browser default ul/ol padding otherwise
+   creates a ragged left edge against paragraph text wrapping the same
+   float (see .float-photo). Nested lists get their own indent below. */
+ul, ol {
+  margin: 0 0 1rem;
+  padding-left: 0;
+  list-style-position: inside;
+}
+
+li > ul,
+li > ol {
+  margin: 0.25rem 0 0;
+  padding-left: 1.25rem;
+}
+
 em { font-style: italic; }
 
 a { color: var(--accent); }
@@ -143,6 +158,22 @@ hr {
   display: block;
 }
 
+.float-photo-left {
+  float: left;
+  margin: 0 1.5rem 1rem 0;
+}
+
+.float-photo-small {
+  width: 208px; /* 80% of the 260px default */
+  /* top: nudges the float down to align with the following h2's top margin
+     (h2 has margin-top: 2rem, which collapses with the preceding paragraph's
+     margin-bottom -- but floats don't participate in that collapsing, so
+     without this the image sits higher than the heading text next to it).
+     Best-effort estimate, not verified against a live render -- nudge
+     further if it's still off. */
+  margin: 23px 44px 36px 0;
+}
+
 /* ── Footer ── */
 
 footer {
@@ -182,7 +213,8 @@ footer a { color: var(--muted); }
 
   h1 { font-size: 1.25rem; }
 
-  .float-photo {
+  .float-photo,
+  .float-photo-left {
     float: none;
     width: 100%;
     max-width: 100%;
