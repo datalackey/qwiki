@@ -33,11 +33,14 @@ We're looking for a co-founder to help build and lead our company from the groun
 
 **Duties**
 
-- Handle light-to-medium difficulty enhancements to our existing platform and tools
+- Handle light-to-medium difficulty enhancements to our existing platform and tools.
 - Write and publish articles explaining the novel principles behind the tech
-  we've built so far
+  we've built so far.
 - Engage with campaigns and operations initiatives run by organizations we
-  align with
+  align with.
+  - Help them apply the tools we have developed in-house or gained expertise in.
+  - This external engagement will be critical in ensuring our product idea
+    pipeline meets the on-the-ground needs of our user base.
 
 
 
