@@ -31,6 +31,23 @@ subsidiary as it grows. In exchange: a mission worth building for, a
 culture that prioritizes craftsmanship over shipping slop fast, and the
 kind of technical ownership most engineers never get offered.
 
+#### Intern
+
+**Requirements**
+
+- **Degree in Computer Science or a STEM discipline** -- or a demonstrated
+  portfolio of equivalent experience
+- **Familiarity with agentic AI coding tools** (e.g., Cursor, Claude Code)
+- **TypeScript / web development experience**
+
+**Duties**
+
+- Handle light-to-medium difficulty enhancements to our existing platform and tools
+- Write and publish articles explaining the novel principles behind the tech
+  we've built so far
+- Engage with campaigns and operations initiatives run by organizations we
+  align with
+
 If this sounds like you, reach out at chris@buildlackey.com.
 
 [comp-philosophy]: /about-company-structure.html#compensation-philosophy
