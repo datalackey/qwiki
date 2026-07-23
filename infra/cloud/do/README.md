@@ -53,14 +53,15 @@ infra/ (provider-agnostic, same on laptop and droplet)
   |                               service to tell droplet from laptop)
   |-- scripts/launch-in-cloud.sh -- first-time bootstrap (wipes+installs
   |                                  MediaWiki fresh, then deploys content)
-  |-- scripts/reload.sh        -- day-2 updates: git pull + redeploy
-  |                                content, never touches the DB
+  |-- scripts/lightweight-reload.sh -- day-2 updates: git pull + redeploy
+  |                                     content, never touches the DB
 ```
 
 Two different mechanisms exist on purpose, so they can't be confused:
 **`launch-in-cloud.sh`** installs MediaWiki from scratch (wipes the DB) and
-runs once, either by hand or via cloud-init on first boot. **`reload.sh`**
-(the `reload` alias) is the routine "I pushed a change, deploy it" path —
+runs once, either by hand or via cloud-init on first boot.
+**`lightweight-reload.sh`** (the `reload` alias) is the routine "I pushed a
+change, deploy it" path —
 it checks the wiki is actually up first and bails if not, then pulls,
 reinstalls npm deps, and redeploys content. It never wipes anything.
 
@@ -249,7 +250,7 @@ on the droplet:
 reload
 ```
 
-which runs `infra/scripts/reload.sh`: checks the wiki is up, `git pull`s,
+which runs `infra/scripts/lightweight-reload.sh`: checks the wiki is up, `git pull`s,
 `npm ci`, and redeploys content — never touches the database.
 
 ## Tearing down

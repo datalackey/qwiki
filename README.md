@@ -100,7 +100,7 @@ MediaWiki API. Open `http://localhost:8080` and hard-refresh to see the result.
 
 Importing is additive — pages are created or updated but never deleted. To
 remove a page, either delete it manually in the wiki UI, or run
-`fresh-wiki-install.sh` to wipe and reimport from scratch.
+`infra/scripts/factory-reset.sh` to wipe and reimport from scratch.
 
 See [Content directory layout](#content-directory-layout) for how to structure
 your Markdown files.
@@ -306,7 +306,8 @@ where the path differs.
 
 The `website/src/` directory holds the source Markdown files for `doikayt.org`.
 `npm run build:website` converts them to HTML in `website/dist/`, which Caddy
-serves. On the droplet, `reload.sh` runs this step automatically after `git pull`.
+serves. On the droplet, `lightweight-reload.sh` runs this step automatically
+after `git pull`.
 
 ### Link syntax
 
@@ -348,10 +349,11 @@ provides a self-contained local wiki for content development and testing.
 
 | Script | What it does |
 |---|---|
-| `infra/scripts/fresh-wiki-install.sh` | Full reset: tear down containers, wipe DB volume, reinstall |
+| `infra/scripts/factory-reset.sh` | Clean slate: wipe images + DB volume, reinstall, rebuild, reimport |
+| `infra/scripts/fresh-wiki-install.sh` | Tear down containers, wipe DB volume, reinstall (used by `factory-reset.sh`) |
+| `infra/scripts/lightweight-reload.sh` | Pull + rebuild + redeploy content to an already-running wiki -- never touches the DB |
 | `infra/scripts/import-wiki-content.sh` | Deploy `example/wiki-content-files/` to the running wiki |
 | `infra/scripts/bounce.sh` | Restart containers (flushes APCu/ResourceLoader cache) |
-| `infra/scripts/wipe.sh` | Tear down containers and volumes without reinstalling |
 
 ### Configuration
 

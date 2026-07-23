@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # First-time droplet bootstrap: installs MediaWiki fresh and deploys content.
 # Run once, from within a freshly cloned checkout (e.g. by cloud-init).
-# For routine updates to an already-running wiki, use reload.sh instead --
-# this script runs fresh-wiki-install.sh, which wipes the MediaWiki DB.
+# For routine updates to an already-running wiki, use lightweight-reload.sh
+# instead -- this script runs fresh-wiki-install.sh, which wipes the DB.
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -30,9 +30,9 @@ echo "==> Deploying content..."
 # falling back to its own default and failing to authenticate.
 export MW_PASSWORD="${WIKI_ADMIN_PASSWORD:-AdminPass123}"
 
-# Persist it for reload.sh -- WIKI_ADMIN_PASSWORD only exists as a
-# one-time env var during this cloud-init run; reload.sh runs later, in
-# a fresh shell, with no way to know the real password otherwise.
+# Persist it for lightweight-reload.sh -- WIKI_ADMIN_PASSWORD only exists as
+# a one-time env var during this cloud-init run; lightweight-reload.sh runs
+# later, in a fresh shell, with no way to know the real password otherwise.
 echo "$MW_PASSWORD" > "$HOME/.wiki_admin_password"
 chmod 600 "$HOME/.wiki_admin_password"
 

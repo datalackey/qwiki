@@ -71,7 +71,7 @@ runcmd:
   - sudo -u dev git clone https://github.com/doikayt/qwiki.git /home/dev/qwiki
 
   # Convenience alias for redeploying content/code without touching the DB
-  - echo "alias reload='bash ~/qwiki/infra/scripts/reload.sh'" >> /home/dev/.bashrc
+  - echo "alias reload='bash ~/qwiki/infra/scripts/lightweight-reload.sh'" >> /home/dev/.bashrc
 
   # First-time bootstrap: installs MediaWiki fresh and deploys content
   - sudo -u dev -H bash -c "cd /home/dev/qwiki && WIKI_ADMIN_PASSWORD='${wiki_admin_password}' bash infra/scripts/launch-in-cloud.sh"
