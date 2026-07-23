@@ -1,5 +1,12 @@
 # @datalackey/qwiki
 
+## 0.1.30
+
+### Patch Changes
+
+-   - feat(website): add photo to Doikayt Vibe, fix list/float text alignment
+    - fix(content): Nextcloud Calendar wording assumed you already run Nextcloud
+
 ## 0.1.29
 
 ### Patch Changes
