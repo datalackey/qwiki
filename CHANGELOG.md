@@ -1,5 +1,11 @@
 # @datalackey/qwiki
 
+## 0.1.31
+
+### Patch Changes
+
+-   - fix(website): point footer link at qwiki GitHub repo instead of wiki
+
 ## 0.1.30
 
 ### Patch Changes
