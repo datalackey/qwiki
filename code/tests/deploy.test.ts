@@ -160,6 +160,39 @@ describe("deploy", () => {
         expect(mock).toHaveBeenCalledTimes(6);
     });
 
+    it("runs edits with real concurrency, capped at EDIT_CONCURRENCY (5)", async () => {
+        let inFlight = 0;
+        let maxInFlight = 0;
+        const totalPages = 12;
+
+        const mock = vi
+            .fn()
+            .mockResolvedValueOnce(LOGIN_TOKEN_RES)
+            .mockResolvedValueOnce(LOGIN_PASS_RES)
+            .mockResolvedValueOnce(CSRF_RES)
+            .mockImplementation(async (url: string) => {
+                // Only edit POSTs (api.php with a body, not the setup GETs) count.
+                if (!url.endsWith("/api.php")) return CSRF_RES;
+                inFlight++;
+                maxInFlight = Math.max(maxInFlight, inFlight);
+                await new Promise(r => setTimeout(r, 5));
+                inFlight--;
+                return EDIT_RES;
+            });
+        vi.stubGlobal("fetch", mock);
+
+        const pages: Page[] = Array.from({ length: totalPages }, (_, i) => ({
+            title: `Page${i}`,
+            body: "x",
+            model: "wikitext" as const,
+        }));
+        await deploy(pages, OPTS);
+
+        expect(maxInFlight).toBe(5);
+        // 3 setup calls + 12 edit calls
+        expect(mock).toHaveBeenCalledTimes(3 + totalPages);
+    });
+
     it("uploads a real PNG file with correct FormData fields", async () => {
         const mock = setupWithUpload();
         const logoPath = tmpPng("logo.png");

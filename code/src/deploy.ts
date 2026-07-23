@@ -101,11 +101,43 @@ async function uploadFile(
     process.stdout.write(`  [upload] ${filename}: ${result}\n`);
 }
 
+/** Max concurrent action=edit requests in flight at once (see deploy()). */
+const EDIT_CONCURRENCY = 5;
+
+/** POST one page's action=edit and log the result. */
+async function editPage(
+    wiki: string,
+    jar: CookieJar,
+    csrf: string,
+    page: Page
+): Promise<void> {
+    const params: Record<string, string> = {
+        action: "edit",
+        title: page.title,
+        text: page.body,
+        summary: `qwiki: ${page.sourcePath}`,
+        token: csrf,
+    };
+    if (page.model !== "wikitext") params["contentmodel"] = page.model;
+
+    const res = await apiPost(wiki, jar, params);
+    const edit = res["edit"] as Record<string, string> | undefined;
+    const err = res["error"] as Record<string, string> | undefined;
+    const result = edit?.["result"] ?? err?.["code"] ?? "unknown";
+    process.stdout.write(`  ${page.title}: ${result}\n`);
+}
+
 /**
  * Authenticate against the MediaWiki Action API and write every page via
  * `action=edit` - the same call a human edit through the wiki UI produces.
- * Sequence: fetch a login token, clientlogin, fetch a CSRF token, then one
- * edit POST per page (idempotent - re-running overwrites with current content).
+ * Sequence: fetch a login token, clientlogin, fetch a CSRF token, upload any
+ * files, then write pages in batches of EDIT_CONCURRENCY at a time. The CSRF
+ * token isn't single-use, so concurrent edits against the same session are
+ * safe (same technique bot frameworks use for bulk edits) - each edit is
+ * independently idempotent, so re-running overwrites with current content
+ * regardless of ordering. Concurrency is capped rather than unbounded since
+ * this typically targets a single modest droplet running MediaWiki + MySQL
+ * in Docker, not a scaled deployment.
  */
 export async function deploy(
     pages: Page[],
@@ -149,21 +181,9 @@ export async function deploy(
         await uploadFile(wiki, jar, csrf, filePath);
     }
 
-    // Edit pages
-    for (const page of pages) {
-        const params: Record<string, string> = {
-            action: "edit",
-            title: page.title,
-            text: page.body,
-            summary: `qwiki: ${page.sourcePath}`,
-            token: csrf,
-        };
-        if (page.model !== "wikitext") params["contentmodel"] = page.model;
-
-        const res = await apiPost(wiki, jar, params);
-        const edit = res["edit"] as Record<string, string> | undefined;
-        const err = res["error"] as Record<string, string> | undefined;
-        const result = edit?.["result"] ?? err?.["code"] ?? "unknown";
-        process.stdout.write(`  ${page.title}: ${result}\n`);
+    // Edit pages, capped at EDIT_CONCURRENCY in flight at once
+    for (let i = 0; i < pages.length; i += EDIT_CONCURRENCY) {
+        const batch = pages.slice(i, i + EDIT_CONCURRENCY);
+        await Promise.all(batch.map(page => editPage(wiki, jar, csrf, page)));
     }
 }
