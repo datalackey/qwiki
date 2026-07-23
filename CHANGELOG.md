@@ -1,5 +1,11 @@
 # @datalackey/qwiki
 
+## 0.1.34
+
+### Patch Changes
+
+-   - fix(website): expand Technical mission's thought-leadership bullet
+
 ## 0.1.33
 
 ### Patch Changes
