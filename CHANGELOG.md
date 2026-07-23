@@ -1,5 +1,13 @@
 # @datalackey/qwiki
 
+## 0.1.32
+
+### Patch Changes
+
+-   - fix(website): clear Doikayt Vibe list below the People photo
+    - feat(website): link key terms in the founder's statement
+    - feat(website): add Careers page
+
 ## 0.1.31
 
 ### Patch Changes
