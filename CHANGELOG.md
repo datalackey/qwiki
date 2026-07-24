@@ -1,5 +1,13 @@
 # @datalackey/qwiki
 
+## 0.1.36
+
+### Patch Changes
+
+-   - feat(website): move rabbis photo to founder's statement, add Bund cover
+    - fix(website): swap People photo to cat-work, italicize Vibe bullets
+    - feat(website): add cat images to Company Structure page
+
 ## 0.1.35
 
 ### Patch Changes
